@@ -13,6 +13,11 @@ export default function Home() {
     { value: "Villa", rate: "연 4.54% ~ 6.24%" },
   ];
 
+  const User = ["김윤호", "010-3072-4346", "10-00048517"];
+  const handleCall = () => {
+    // window.location.href = "tel:010-3072-4346"; // 전화번호를 여기에 입력하세요
+    window.location.href = `tel:${User?.[1]}`; // 전화번호를 여기에 입력하세요
+  };
   const Info = [
     {
       title: "금리유형",
@@ -28,7 +33,11 @@ export default function Home() {
     },
     {
       title: "대출대상",
-      contents: [`${type==="Apt"?"아파트":"빌라(다세대주택)"}를 담보로 제공하는 개인`],
+      contents: [
+        `${
+          type === "Apt" ? "아파트" : "빌라(다세대주택)"
+        }를 담보로 제공하는 개인`,
+      ],
     },
     {
       title: "대출기간",
@@ -79,12 +88,30 @@ export default function Home() {
     },
   ];
 
+  const Notice = [
+    "- ㈜원트모기지는 금융 관계 법률에 따라 한화생명 주식회사와 주택담보대출 모집 업무를 위탁 계약 체결하고 생명보험협회에 등록된 대출모집법인 입니다",
+    "- ㈜원트모기지는 일사전속주의에 따라 한화생명보험 주식회사와 대출 모집 위탁계약을 체결하고 생명보험협회에 등록된 대출모집법인 입니다.",
+    "- ㈜원트모기지는 한화생명보험 주식회사와 대출 모집 위탁계약을 체결한 법인으로 타 금융사 금융상품을 판매할 수 없습니다.",
+    "- 대출상담사등록 여부 확인은 대출모집인 포털사이트(www.loanconsultant.or.kr)에서 대출상담사 등록번호와 휴대전화 번호를 입력하여 조회 가능합니다.",
+    "- 대출상담사는 고객님께 별도의 수수료를 요구하거나 수취할 수 없으며, 대출실행여부는 한화생명보험 주식회사가 직접 심사해서 결정합니다.",
+    "- 대출상담사 및 대출모집법인 대출모집 수수료율은 한화생명보험 주식회사 홈페이지(www.hanwhalife.com금융>대출>대출가이드>대출모집인 수수료율)에서 확인 가능합니다.",
+    "- 대출계약을 체결하기 전에 금융상품설명서 및 약관을 반드시 읽어보시길 바랍니다.",
+    "- 대출금리는 기준금리(국고채 3년, 5년을 적용)와 가산금리(업무원가, 위험프리미엄, 목표이익률 등)를 합산하여 산출되며, 최종 적용되는 대출금리는 고객의 개인신용평점, 거래실적, 대출조건 등에 따라 가감조정금리를 반영하여 적용합니다.",
+    "- 고객님의 신용평점, 외부 규제 및 정책 등 제반조건에 따라 대출이 제한될 수 있으며, 대출 승인 후에도 개인정보의 변동(신용평점, 채무상환 계약조건 등)이 발생할 경우 대출실행이 불가할 수 있습니다.",
+    "- 상환능력에 비해 대출금 및 신용카드사용액이 과도할 경우 귀하의 개인신용평점이 하락할 수 있습니다.",
+    "- 여신금융상품 이용 시 개인신용평점 하락으로 다른 금융거래와 관련된 불이익이 발생할 수 있습니다.",
+    "- 금융소비자는 금소법 제19조 제1항에 따라 해당 상품 또는 서비스에 대하여 설명을 받을 권리가 있으며, 그 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.",
+    "- 대출기간 만기 후 대출원리금 전액을 변제하지 않거나, 대출기간 중 일정기간 원리금 납부 연체 할 경우 연체이자율이 부과되며, 대출만기가 도래하기 전에 모든 원리금을 변제할 의무가 발생할 수 있습니다.",
+    "- 대출상품과 관련한 의문사항 또는 민원이 있을 경우 한화생명보험 주식회사 홈페이지(www.hanwhalife.com)또는 콜센터(1588-6363)으로 문의하실 수 있으며, 분쟁이 발생한 경우에는 금융감독원 (국번없이1332) 에 도움을 요청할 수 있습니다.",
+    "- 금리인하요구권 및 대출계약철회권은 한화생명 홈페이지(www.hanwhalife.com)또는 당사 고객센터에서 확인 가능합니다.",
+    "- 연체이자율은 정상이율 +3%, 최고 연 19%를 적용합니다.",
+  ];
   return (
     // 전체페이지
-    <main className="w-screen relative pb-20">
+    <main className="w-screen relative font-sans">
       {/* 이너 */}
 
-      <div className=" max-w-screen-md mx-auto">
+      <div className=" max-w-screen-md mx-auto mb-6">
         {/* 해더 */}
         <div className="py-2 flex items-center justify-between h-20">
           <div className="px-2">
@@ -100,19 +127,26 @@ export default function Home() {
           <div className="pt-20">
             <div className="flex justify-between">
               <div className="flex items-center">
-                <div className="bg-red-500 size-14 rounded-full">logo</div>
+                {/* <div className="bg-red-500 size-14 rounded-full">logo</div> */}
+                <div className=" size-14 rounded-full">
+                  <img src="./Icon.png" />
+                </div>
                 <div className="pl-4">
                   <p className="text-sm text-gray-400">
-                    대출상담사 등록번호 10-00048517
+                    대출상담사 등록번호 {User?.[2]}
                   </p>
-                  <p className="font-bold">
-                    (주) 원트모기지{" "}
-                    <span className="text-lg">김윤호 상담사</span>
+                  <p className="font-bold text-stone-600">
+                    <span className="text-xl">{User?.[0]} 상담사</span>
                   </p>
-                  <p className="font-bold text-xl">010-3072-4346</p>
+                  <p className="font-bold text-3xl text-stone-600 ">
+                    {User?.[1]}
+                  </p>
                 </div>
               </div>
-              <button className="bg-green-500 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg hover:bg-red-500 transition-transform">
+              <button
+                className="bg-gradient-to-tr from-orange-400 to-orange-200 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg"
+                onClick={handleCall}
+              >
                 <p>전화상담</p>
               </button>
             </div>
@@ -129,7 +163,7 @@ export default function Home() {
               };
               return (
                 <div
-                  className={`w-1/2 border-b-4 border-b-orange-100 text-center cursor-pointer transition-all ${customStyle()}`}
+                  className={`w-1/2 border-b-4 text-lg font-bold text-stone-500 border-b-orange-100 text-center cursor-pointer transition-all ${customStyle()}`}
                   onClick={() => {
                     setType(value);
                   }}
@@ -143,15 +177,19 @@ export default function Home() {
         {/* 박스 */}
         <div className="flex mt-4">
           <div className="bg-gray-100 w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-3xl font-extrabold">대 출 금 리</p>
-            <p className="text-xl font-bold text-orange-400 py-4">
+            <p className="text-2xl font-extrabold text-stone-500">
+              대 출 금 리
+            </p>
+            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               {Rate.find((item) => item?.value === type)?.rate}
             </p>
             <p className="text-gray-500 text-sm">(2024년 4월 기준)</p>
           </div>
           <div className="bg-gray-100 w-1/2 ml-1 mr-2 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-3xl font-extrabold">대 출 한 도</p>
-            <p className="text-xl font-bold text-orange-400 py-4">
+            <p className="text-2xl font-extrabold text-stone-500">
+              대 출 한 도
+            </p>
+            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               감정가의 최대 70% 까지
             </p>
             <p className="text-gray-500 text-sm">
@@ -160,10 +198,12 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <div className="mt-6 pl-4 my-4">한화생명 담보대출의 장점</div>
+          <div className="mt-10 pl-4 mb-4 text-xl text-stone-500 font-bold">
+            한화생명 담보대출의 장점
+          </div>
           <div className="flex">
             <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-gray-700">
+              <p className="text-2xl font-extrabold text-stone-500">
                 중도상환수수료
               </p>
               <p className="text-xl font-bold text-orange-400 py-2">
@@ -173,7 +213,9 @@ export default function Home() {
               <p className="text-gray-500 text-sm">(3년 이후 100% 면제)</p>
             </div>
             <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-gray-700">거치 기간</p>
+              <p className="text-2xl font-extrabold text-stone-500">
+                거치 기간
+              </p>
               <p className="text-xl font-bold text-orange-400 py-2">
                 <span className="text-sm text-gray-500 mr-2">거치 설정</span>
                 1년 이상
@@ -181,7 +223,7 @@ export default function Home() {
               <p className="text-gray-500 text-sm">(원금선납 거치 가능)</p>
             </div>
             <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-gray-700">낮은 DSR</p>
+              <p className="text-2xl font-extrabold text-stone-500">낮은 DSR</p>
               <p className="text-xl font-bold text-orange-400 py-2">
                 <span className="text-sm text-gray-500 mr-2">원금균등상환</span>
                 DSR 계산
@@ -209,6 +251,43 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+        </div>
+        <div>
+          <div className="mt-14 font-bold text-xl text-stone-500 mb-4">
+            꼭 알아두실 내용!
+          </div>
+          <div>
+            {Notice?.map((item) => {
+              return <p className="text-stone-500 mb-2 text-sm">{item}</p>;
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* footer */}
+      <div className="bg-gray-100 border-t-2 py-4 text-stone-500">
+        {/* footer Inner */}
+        <div className="max-w-screen-md mx-auto mb-6">
+          <div className="flex justify-between">
+            <div>원트모기지 로고</div>
+            <div>이용약관</div>
+          </div>
+          <div className="flex justify-between">
+            <p>(주)원트모기지</p>
+            <p>사업자등록번호 : </p>
+            <p>대표자명 : 송호성</p>
+          </div>
+          <div>
+            <p>
+              주소 : 서울특별시 강서구 마곡동 759-3(마곡중앙로 161-17)
+              보타닉파크타워1차 616호
+            </p>
+          </div>
+          <div>
+            <p>
+              (주)한화생명 대출모집법인 (주)원트모기지 등록번호 : 20-00001189
+            </p>
           </div>
         </div>
       </div>
