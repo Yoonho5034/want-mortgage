@@ -1,8 +1,14 @@
 "use client";
 import react from "react";
+import Modal from "./modal";
 
 export default function Home() {
   const [type, setType] = react.useState("Apt");
+  const [isModalOpen, setIsModalOpen] = react.useState(false);
+
+  const modalHandler = () => {
+    setIsModalOpen((prev) => !prev);
+  };
 
   const Tilte = [
     { title: "아파트", value: "Apt" },
@@ -106,25 +112,30 @@ export default function Home() {
     "- 금리인하요구권 및 대출계약철회권은 한화생명 홈페이지(www.hanwhalife.com)또는 당사 고객센터에서 확인 가능합니다.",
     "- 연체이자율은 정상이율 +3%, 최고 연 19%를 적용합니다.",
   ];
+
   return (
     // 전체페이지
     <main className="w-screen relative font-sans">
-      {/* 이너 */}
-
-      <div className=" max-w-screen-md mx-auto mb-6">
-        {/* 해더 */}
+      <div className=" max-w-screen-md mx-auto">
         <div className="py-2 flex items-center justify-between h-20">
           <div className="px-2">
             <img src="./logo.png" className="w-40" />
           </div>
-          <div className="px-2 text-gray-400 font-bold text-sm">
+          <div className="px-2 text-stone-400 font-bold text-sm">
             한화생명 대출모집법인 원트모기지
+            <p className="font-medium text-right">20-00001189</p>
           </div>
         </div>
+      </div>
+      <div>
+        <img src="./main2.png" />
+      </div>
+      {/* 이너 */}
+      <div className=" max-w-screen-md mx-auto mb-6">
         {/* body */}
         <div className="mt-100 px-2">
           {/* 메인문구 */}
-          <div className="pt-20">
+          <div className="pt-10">
             <div className="flex justify-between">
               <div className="flex items-center">
                 {/* <div className="bg-red-500 size-14 rounded-full">logo</div> */}
@@ -143,12 +154,26 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <button
-                className="bg-gradient-to-tr from-orange-400 to-orange-200 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg"
-                onClick={handleCall}
-              >
-                <p>전화상담</p>
-              </button>
+              <div className="flex">
+                <button
+                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2"
+                  onClick={handleCall}
+                >
+                  <p>전화상담</p>
+                </button>
+                <button
+                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg"
+                  onClick={handleCall}
+                >
+                  <a
+                    href="https://open.kakao.com/o/s3bm1vRf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    카톡 상담
+                  </a>
+                </button>
+              </div>
             </div>
             <div></div>
           </div>
@@ -177,18 +202,14 @@ export default function Home() {
         {/* 박스 */}
         <div className="flex mt-4">
           <div className="bg-gray-100 w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-2xl font-extrabold text-stone-500">
-              대 출 금 리
-            </p>
+            <p className="text-2xl font-extrabold text-stone-500">대출금리</p>
             <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               {Rate.find((item) => item?.value === type)?.rate}
             </p>
             <p className="text-gray-500 text-sm">(2024년 4월 기준)</p>
           </div>
           <div className="bg-gray-100 w-1/2 ml-1 mr-2 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-2xl font-extrabold text-stone-500">
-              대 출 한 도
-            </p>
+            <p className="text-2xl font-extrabold text-stone-500">대출한도</p>
             <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               감정가의 최대 70% 까지
             </p>
@@ -266,12 +287,18 @@ export default function Home() {
       </div>
 
       {/* footer */}
-      <div className="bg-gray-100 border-t-2 py-4 text-stone-500">
+      <div className="bg-gray-100 border-t-2 py-4 text-stone-500 text-sm">
         {/* footer Inner */}
         <div className="max-w-screen-md mx-auto mb-6">
-          <div className="flex justify-between">
-            <div>원트모기지 로고</div>
-            <div>이용약관</div>
+          <div className="flex justify-end">
+            <button
+              className="font-bold"
+              onClick={() => {
+                modalHandler();
+              }}
+            >
+              이용약관
+            </button>
           </div>
           <div className="flex justify-between">
             <p>(주)원트모기지</p>
@@ -284,13 +311,15 @@ export default function Home() {
               보타닉파크타워1차 616호
             </p>
           </div>
-          <div>
+          <div className="flex justify-between">
             <p>
               (주)한화생명 대출모집법인 (주)원트모기지 등록번호 : 20-00001189
             </p>
+            <img src="./wantMo.png" className="w-20 mr-2" />
           </div>
         </div>
       </div>
+      {isModalOpen ? <Modal modalHandler={() => modalHandler} /> : null}
     </main>
   );
 }
