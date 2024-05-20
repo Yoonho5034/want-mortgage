@@ -117,11 +117,11 @@ export default function Home() {
     // 전체페이지
     <main className="w-screen relative font-sans">
       <div className=" max-w-screen-md mx-auto">
-        <div className="py-2 flex items-center justify-between h-20">
-          <div className="px-2">
-            <img src="./logo.png" className="w-40" />
+        <div className="py-2 flex items-center justify-between h-20 mobile:h-14 ">
+          <div className="px-2 ">
+            <img src="./logo.png" className="w-40 mobile:w-24" />
           </div>
-          <div className="px-2 text-stone-400 font-bold text-sm">
+          <div className="px-2 text-stone-400 font-bold text-sm mobile:text-xs">
             한화생명 대출모집법인 원트모기지
             <p className="font-medium text-right">20-00001189</p>
           </div>
@@ -136,33 +136,34 @@ export default function Home() {
         <div className="mt-100 px-2">
           {/* 메인문구 */}
           <div className="pt-10">
-            <div className="flex justify-between">
+            <div className="flex justify-between mobile:block">
               <div className="flex items-center">
-                {/* <div className="bg-red-500 size-14 rounded-full">logo</div> */}
                 <div className=" size-14 rounded-full">
                   <img src="./Icon.png" />
                 </div>
                 <div className="pl-4">
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-400 mobile:text-xs">
                     대출상담사 등록번호 {User?.[2]}
                   </p>
-                  <p className="font-bold text-stone-600">
-                    <span className="text-xl">{User?.[0]} 상담사</span>
+                  <p className="font-bold text-stone-600 ">
+                    <span className="text-xl mobile:text-sm">
+                      {User?.[0]} 상담사
+                    </span>
                   </p>
-                  <p className="font-bold text-3xl text-stone-600 ">
+                  <p className="font-bold text-3xl text-stone-600 mobile:text-sm ">
                     {User?.[1]}
                   </p>
                 </div>
               </div>
-              <div className="flex">
+              <div className="flex mobile:mt-4">
                 <button
-                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2"
+                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2 mobile:rounded-md mobile:w-1/2 mobile:py-2"
                   onClick={handleCall}
                 >
                   <p>전화상담</p>
                 </button>
                 <button
-                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg"
+                  className="bg-gradient-to-tr from-yellow-300 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mobile:rounded-md mobile:w-1/2"
                   onClick={handleCall}
                 >
                   <a
@@ -202,18 +203,24 @@ export default function Home() {
         {/* 박스 */}
         <div className="flex mt-4">
           <div className="bg-gray-100 w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-2xl font-extrabold text-stone-500">대출금리</p>
+            <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
+              대출금리
+            </p>
             <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               {Rate.find((item) => item?.value === type)?.rate}
             </p>
-            <p className="text-gray-500 text-sm">(2024년 4월 기준)</p>
+            <p className="text-gray-500 text-sm mobile:text-xs">
+              (2024년 4월 기준)
+            </p>
           </div>
           <div className="bg-gray-100 w-1/2 ml-1 mr-2 rounded-2xl text-center p-2 shadow-md">
-            <p className="text-2xl font-extrabold text-stone-500">대출한도</p>
+            <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
+              대출한도
+            </p>
             <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
               감정가의 최대 70% 까지
             </p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-sm mobile:text-xs">
               (대출금액, 신용도 등에 따라 차등 적용)
             </p>
           </div>
@@ -222,48 +229,64 @@ export default function Home() {
           <div className="mt-10 pl-4 mb-4 text-xl text-stone-500 font-bold">
             한화생명 담보대출의 장점
           </div>
-          <div className="flex">
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-stone-500">
+          <div className="flex ">
+            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:mx-1">
+              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
                 중도상환수수료
               </p>
               <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2">대출 원금의</span>
+                <span className="text-sm text-gray-500 mr-2 mobile:mr-0 mobile:hidden">
+                  대출 원금의
+                </span>
                 50% 면제
               </p>
-              <p className="text-gray-500 text-sm">(3년 이후 100% 면제)</p>
+              <p className="text-gray-500 text-sm mobile:text-xs">
+                (3년 이후 100% 면제)
+              </p>
             </div>
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-stone-500">
+            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:m-0">
+              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
                 거치 기간
               </p>
               <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2">거치 설정</span>
+                <span className="text-sm text-gray-500 mr-2 mobile:mr-0 mobile:hidden">
+                  거치 설정
+                </span>
                 1년 이상
               </p>
-              <p className="text-gray-500 text-sm">(원금선납 거치 가능)</p>
+              <p className="text-gray-500 text-sm mobile:text-xs">
+                (원금선납 거치 가능)
+              </p>
             </div>
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md">
-              <p className="text-2xl font-extrabold text-stone-500">낮은 DSR</p>
+            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:mx-1">
+              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
+                낮은 DSR
+              </p>
               <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2">원금균등상환</span>
+                <span className="text-sm text-gray-500 mr-2 mobile:hidden">
+                  원금균등상환
+                </span>
                 DSR 계산
               </p>
-              <p className="text-gray-500 text-sm">(타금융사 대비 낮은 DSR)</p>
+              <p className="text-gray-500 text-sm mobile:text-xs">
+                (타금융사 대비 낮은 DSR)
+              </p>
             </div>
           </div>
         </div>
-        <div className="mt-20 ">
+        <div className="mt-20 mobile:mt-10">
           {/* 컨테이너 */}
           <div className="p-4 bg-slate-50 rounded-lg">
             {Info?.map(({ title, contents }) => {
               return (
                 <div className="flex border-b-2 py-2 last:border-none">
-                  <div className="mr-10 text-md font-bold w-32 ">{title}</div>
+                  <div className="text-stone-700 mr-10 text-md font-bold w-32 mobile:text-sm mobile:w-24 mobile:mr-0">
+                    {title}
+                  </div>
                   <div>
                     {contents?.map((content) => {
                       return (
-                        <p className=" text-stone-600 text-sm mb-1">
+                        <p className=" text-stone-600 text-sm mb-1 mobile:text-xs mobile:min-w-56">
                           {content}
                         </p>
                       );
@@ -274,22 +297,26 @@ export default function Home() {
             })}
           </div>
         </div>
-        <div>
-          <div className="mt-14 font-bold text-xl text-stone-500 mb-4">
+        <div className="mobile:px-2">
+          <div className="mt-14 font-bold text-xl text-stone-500 mb-4 mobile:mt-6 mobile:text-sm">
             꼭 알아두실 내용!
           </div>
           <div>
             {Notice?.map((item) => {
-              return <p className="text-stone-500 mb-2 text-sm">{item}</p>;
+              return (
+                <p className="text-stone-500 mb-2 text-sm mobile:text-xs">
+                  {item}
+                </p>
+              );
             })}
           </div>
         </div>
       </div>
 
       {/* footer */}
-      <div className="bg-gray-100 border-t-2 py-4 text-stone-500 text-sm">
+      <div className="bg-gray-100 border-t-2 py-4 text-stone-500 text-sm mobile:px-2 mobile:py-2">
         {/* footer Inner */}
-        <div className="max-w-screen-md mx-auto mb-6">
+        <div className="max-w-screen-md mx-auto mb-6 mobile:mb-4">
           <div className="flex justify-end">
             <button
               className="font-bold"
@@ -300,18 +327,18 @@ export default function Home() {
               이용약관
             </button>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mobile:text-xs">
             <p>(주)원트모기지</p>
             <p>사업자등록번호 : </p>
             <p>대표자명 : 송호성</p>
           </div>
-          <div>
+          <div className="mobile:text-xs mobile:my-2">
             <p>
               주소 : 서울특별시 강서구 마곡동 759-3(마곡중앙로 161-17)
               보타닉파크타워1차 616호
             </p>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mobile:text-xs">
             <p>
               (주)한화생명 대출모집법인 (주)원트모기지 등록번호 : 20-00001189
             </p>
