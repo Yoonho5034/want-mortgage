@@ -289,10 +289,12 @@ export default function Home() {
                   <div className="flex justify-center">
                     <img src={img} className="size-2/3" />
                   </div>
-                  <div className="font-bold">{title}</div>
+                  <div className="font-bold mobile:text-sm">{title}</div>
                   <div>
                     <div className="flex justify-center items-end">
-                      <p className="text-sm text font-bold mr-2">{subTitle}</p>
+                      <p className="text-sm text font-bold mr-2 mobile:hidden">
+                        {subTitle}
+                      </p>
                       <p className="font-bold text-orange-500">{point}</p>
                     </div>
                   </div>

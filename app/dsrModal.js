@@ -35,7 +35,7 @@ const dsrModal = ({ dsrModalHandler }) => {
   return (
     <div>
       <div
-        className="bg-black opacity-40 fixed top-0 left-0 w-screen h-screen mobile:hidden"
+        className="bg-black opacity-40 fixed top-0 left-0 w-screen h-screen "
         onClick={dsrModalHandler()}
       />
       <div className="bg-white fixed w-180 h-90 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-y-auto px-6 py-6 rounded-md mobile:w-full mobile:max-h-screen">
