@@ -14,14 +14,24 @@ export default function Home() {
     { title: "아파트", value: "Apt" },
     { title: "빌라", value: "Villa" },
   ];
+  // 금리 정보
   const Rate = [
     { value: "Apt", rate: "연 4.44% ~ 6.14%" },
     { value: "Villa", rate: "연 4.54% ~ 6.24%" },
+    "( 2024년 4월 기준 )",
   ];
-
-  const User = ["김윤호", "010-3072-4346", "10-00048517"];
+  // 상담사 정보
+  const User = [
+    // 이름
+    "김윤호",
+    // 전화번호
+    "010-3072-4346",
+    // 상담사 등록번호
+    "10-00048517",
+    // 카카오톡 링크
+    "https://open.kakao.com/o/s3bm1vRf",
+  ];
   const handleCall = () => {
-    // window.location.href = "tel:010-3072-4346"; // 전화번호를 여기에 입력하세요
     window.location.href = `tel:${User?.[1]}`; // 전화번호를 여기에 입력하세요
   };
   const Info = [
@@ -113,6 +123,26 @@ export default function Home() {
     "- 연체이자율은 정상이율 +3%, 최고 연 19%를 적용합니다.",
   ];
 
+  const Card = [
+    {
+      title: "중도상환수수료",
+      subTitle: "대출 원금의",
+      point: "50% 면제",
+      img: "coin.png",
+    },
+    {
+      title: "거치기간",
+      subTitle: "원금선납",
+      point: "1년 이상",
+      img: "calendar.png",
+    },
+    {
+      title: "DSR 비율",
+      subTitle: "타 금융권 대비",
+      point: "높은 한도",
+      img: "money.png",
+    },
+  ];
   return (
     // 전체페이지
     <main className="w-screen relative font-sans">
@@ -157,20 +187,16 @@ export default function Home() {
               </div>
               <div className="flex mobile:mt-4">
                 <button
-                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2 mobile:rounded-md mobile:w-1/2 mobile:py-2"
+                  className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2 mobile:rounded-md mobile:w-1/2 mobile:py-2 hover:from-orange-400 hover:to-orange-600"
                   onClick={handleCall}
                 >
                   <p>전화상담</p>
                 </button>
                 <button
-                  className="bg-gradient-to-tr from-yellow-300 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mobile:rounded-md mobile:w-1/2"
-                  onClick={handleCall}
+                  className="bg-gradient-to-tr from-yellow-300 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mobile:rounded-md mobile:w-1/2  hover:from-orange-400 hover:to-yellow-300"
+                  // onClick={handleCall}
                 >
-                  <a
-                    href="https://open.kakao.com/o/s3bm1vRf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={User?.[3]} target="_blank" rel="noopener noreferrer">
                     카톡 상담
                   </a>
                 </button>
@@ -206,18 +232,16 @@ export default function Home() {
             <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
               대출금리
             </p>
-            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
+            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2 mobile:text-sm">
               {Rate.find((item) => item?.value === type)?.rate}
             </p>
-            <p className="text-gray-500 text-sm mobile:text-xs">
-              (2024년 4월 기준)
-            </p>
+            <p className="text-gray-500 text-sm mobile:text-xs">{Rate?.[2]}</p>
           </div>
           <div className="bg-gray-100 w-1/2 ml-1 mr-2 rounded-2xl text-center p-2 shadow-md">
             <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
               대출한도
             </p>
-            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2">
+            <p className="text-2xl font-bold text-orange-400 pb-4 pt-2 mobile:text-sm">
               감정가의 최대 70% 까지
             </p>
             <p className="text-gray-500 text-sm mobile:text-xs">
@@ -229,49 +253,24 @@ export default function Home() {
           <div className="mt-10 pl-4 mb-4 text-xl text-stone-500 font-bold">
             한화생명 담보대출의 장점
           </div>
-          <div className="flex ">
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:mx-1">
-              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
-                중도상환수수료
-              </p>
-              <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2 mobile:mr-0 mobile:hidden">
-                  대출 원금의
-                </span>
-                50% 면제
-              </p>
-              <p className="text-gray-500 text-sm mobile:text-xs">
-                (3년 이후 100% 면제)
-              </p>
-            </div>
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:m-0">
-              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
-                거치 기간
-              </p>
-              <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2 mobile:mr-0 mobile:hidden">
-                  거치 설정
-                </span>
-                1년 이상
-              </p>
-              <p className="text-gray-500 text-sm mobile:text-xs">
-                (원금선납 거치 가능)
-              </p>
-            </div>
-            <div className="border w-1/2 ml-2 mr-1 rounded-2xl text-center p-2 shadow-md mobile:w-1/3 mobile:mx-1">
-              <p className="text-2xl font-extrabold text-stone-500 mobile:text-sm">
-                낮은 DSR
-              </p>
-              <p className="text-xl font-bold text-orange-400 py-2">
-                <span className="text-sm text-gray-500 mr-2 mobile:hidden">
-                  원금균등상환
-                </span>
-                DSR 계산
-              </p>
-              <p className="text-gray-500 text-sm mobile:text-xs">
-                (타금융사 대비 낮은 DSR)
-              </p>
-            </div>
+          {/* 작업중 */}
+          <div className="flex relative">
+            {Card?.map(({ title, subTitle, img, point }) => {
+              return (
+                <button className="border w-1/3 mx-1 rounded-2xl text-center p-2 shadow-md text-stone-500 hover:shadow-2xl">
+                  <div className="flex justify-center">
+                    <img src={img} className="size-2/3" />
+                  </div>
+                  <div className="font-bold">{title}</div>
+                  <div>
+                    <div className="flex justify-center items-end">
+                      <p className="text-sm text font-bold mr-2">{subTitle}</p>
+                      <p className="font-bold text-orange-500">{point}</p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
         <div className="mt-20 mobile:mt-10">
@@ -316,8 +315,8 @@ export default function Home() {
       {/* footer */}
       <div className="bg-gray-100 border-t-2 py-4 text-stone-500 text-sm mobile:px-2 mobile:py-2">
         {/* footer Inner */}
-        <div className="max-w-screen-md mx-auto mb-6 mobile:mb-4">
-          <div className="flex justify-end">
+        <div className="max-w-screen-md mx-auto mb-6 mobile:mb-4 text-center">
+          <div>
             <button
               className="font-bold"
               onClick={() => {
@@ -327,10 +326,12 @@ export default function Home() {
               이용약관
             </button>
           </div>
-          <div className="flex justify-between mobile:text-xs">
-            <p>(주)원트모기지</p>
-            <p>사업자등록번호 : </p>
-            <p>대표자명 : 송호성</p>
+          <div className="flex mobile:text-xs justify-center">
+            <div className="flex">
+              <p>(주)원트모기지</p>
+              <p className="mx-4">사업자등록번호 : 661-86-02715</p>
+              <p>대표자명 : 송호성</p>
+            </div>
           </div>
           <div className="mobile:text-xs mobile:my-2">
             <p>
@@ -338,11 +339,10 @@ export default function Home() {
               보타닉파크타워1차 616호
             </p>
           </div>
-          <div className="flex justify-between mobile:text-xs">
+          <div className="flex justify-center mobile:text-xs">
             <p>
               (주)한화생명 대출모집법인 (주)원트모기지 등록번호 : 20-00001189
             </p>
-            <img src="./wantMo.png" className="w-20 mr-2" />
           </div>
         </div>
       </div>
