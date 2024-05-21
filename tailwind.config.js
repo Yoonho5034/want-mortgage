@@ -19,6 +19,7 @@ module.exports = {
         100: "24rem",
         128: "32rem", // 약 512px
         160: "40rem", // 약 640px
+        180: "48rem",
       },
       height: {
         100: "24rem",

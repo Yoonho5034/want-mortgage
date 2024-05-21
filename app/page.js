@@ -1,13 +1,23 @@
 "use client";
 import react from "react";
 import Modal from "./modal";
+import RefundModal from "./refund";
+import InterestOnlyModal from "./interestOnly";
 
 export default function Home() {
   const [type, setType] = react.useState("Apt");
   const [isModalOpen, setIsModalOpen] = react.useState(false);
+  const [refundModalOpen, isrefundModalOpen] = react.useState(false);
+  const [interestOnlyOpen, setInteresOnlyOpen] = react.useState(false);
 
   const modalHandler = () => {
     setIsModalOpen((prev) => !prev);
+  };
+  const refundModalHandler = () => {
+    isrefundModalOpen((prev) => !prev);
+  };
+  const interestOnlyModalHandler = () => {
+    setInteresOnlyOpen((prev) => !prev);
   };
 
   const Tilte = [
@@ -129,18 +139,27 @@ export default function Home() {
       subTitle: "대출 원금의",
       point: "50% 면제",
       img: "coin.png",
+      clickEvent: () => {
+        refundModalHandler();
+      },
     },
     {
       title: "거치기간",
       subTitle: "원금선납",
       point: "1년 이상",
       img: "calendar.png",
+      clickEvent: () => {
+        interestOnlyModalHandler();
+      },
     },
     {
       title: "DSR 비율",
       subTitle: "타 금융권 대비",
       point: "높은 한도",
       img: "money.png",
+      clickEvent: () => {
+        refundModalHandler();
+      },
     },
   ];
   return (
@@ -255,9 +274,12 @@ export default function Home() {
           </div>
           {/* 작업중 */}
           <div className="flex relative">
-            {Card?.map(({ title, subTitle, img, point }) => {
+            {Card?.map(({ title, subTitle, img, point, clickEvent }) => {
               return (
-                <button className="border w-1/3 mx-1 rounded-2xl text-center p-2 shadow-md text-stone-500 hover:shadow-2xl">
+                <button
+                  className="border w-1/3 mx-1 rounded-2xl text-center p-2 shadow-md text-stone-500 hover:shadow-2xl"
+                  onClick={clickEvent}
+                >
                   <div className="flex justify-center">
                     <img src={img} className="size-2/3" />
                   </div>
@@ -347,6 +369,16 @@ export default function Home() {
         </div>
       </div>
       {isModalOpen ? <Modal modalHandler={() => modalHandler} /> : null}
+
+      {refundModalOpen ? (
+        <RefundModal refundModalHandler={() => refundModalHandler} />
+      ) : null}
+
+      {interestOnlyOpen ? (
+        <InterestOnlyModal
+          interestOnlyModalHandler={() => interestOnlyModalHandler}
+        />
+      ) : null}
     </main>
   );
 }
