@@ -3,12 +3,14 @@ import react from "react";
 import Modal from "./modal";
 import RefundModal from "./refund";
 import InterestOnlyModal from "./interestOnly";
+import DsrModal from "./dsrModal";
 
 export default function Home() {
   const [type, setType] = react.useState("Apt");
   const [isModalOpen, setIsModalOpen] = react.useState(false);
   const [refundModalOpen, isrefundModalOpen] = react.useState(false);
   const [interestOnlyOpen, setInteresOnlyOpen] = react.useState(false);
+  const [dsrModalOpen, setDsrModal] = react.useState(false);
 
   const modalHandler = () => {
     setIsModalOpen((prev) => !prev);
@@ -18,6 +20,10 @@ export default function Home() {
   };
   const interestOnlyModalHandler = () => {
     setInteresOnlyOpen((prev) => !prev);
+  };
+
+  const dsrModalHandler = () => {
+    setDsrModal((prev) => !prev);
   };
 
   const Tilte = [
@@ -158,7 +164,7 @@ export default function Home() {
       point: "높은 한도",
       img: "money.png",
       clickEvent: () => {
-        refundModalHandler();
+        dsrModalHandler();
       },
     },
   ];
@@ -369,7 +375,6 @@ export default function Home() {
         </div>
       </div>
       {isModalOpen ? <Modal modalHandler={() => modalHandler} /> : null}
-
       {refundModalOpen ? (
         <RefundModal refundModalHandler={() => refundModalHandler} />
       ) : null}
@@ -379,8 +384,9 @@ export default function Home() {
           interestOnlyModalHandler={() => interestOnlyModalHandler}
         />
       ) : null}
+      {dsrModalOpen ? (
+        <DsrModal dsrModalHandler={() => dsrModalHandler} />
+      ) : null}
     </main>
   );
 }
-
-// Home.useClient = true;

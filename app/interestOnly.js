@@ -17,7 +17,7 @@ const refundModal = ({ interestOnlyModalHandler }) => {
           </p>
           <div className="font-bold">
             <p>
-              주택을 매입할 경우,{" "}
+              주택을 매입할 경우,
               <span className="font-bold text-lg text-orange-400 mx-1">
                 전 금융권
               </span>
