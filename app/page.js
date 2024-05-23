@@ -32,9 +32,9 @@ export default function Home() {
   ];
   // 금리 정보
   const Rate = [
-    { value: "Apt", rate: "연 4.44% ~ 6.14%" },
-    { value: "Villa", rate: "연 4.54% ~ 6.24%" },
-    "( 2024년 4월 기준 )",
+    { value: "Apt", rate: "연 4.44% ~ 5.88%" },
+    { value: "Villa", rate: "연 4.54% ~ 5.88%" },
+    "( 2024년 5월 기준 )",
   ];
   // 상담사 정보
   const User = [
@@ -151,8 +151,8 @@ export default function Home() {
     },
     {
       title: "거치기간",
-      subTitle: "원금선납",
-      point: "1년 이상",
+      subTitle: "거치 설정",
+      point: "최장 5년",
       img: "calendar.png",
       clickEvent: () => {
         interestOnlyModalHandler();
