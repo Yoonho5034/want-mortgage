@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mobile: { max: "700px" }, // sm보다 작은 사이즈 추가
+        mobile: { max: "699px" }, // sm보다 작은 사이즈 추가
+        notMobile: { min: "700px" },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

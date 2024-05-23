@@ -21,7 +21,7 @@ const refundModal = ({ interestOnlyModalHandler }) => {
               <span className="font-bold text-lg text-orange-400 mx-1">
                 전 금융권
               </span>
-              거치기간 최대 1년!
+              거치기간 최대 5년!
             </p>
           </div>
           <p></p>
@@ -51,7 +51,7 @@ const refundModal = ({ interestOnlyModalHandler }) => {
             잔금대출도
             <span className="font-bold text-orange-400 mx-1">1년 이상</span>
             <span className="font-bold mr-1">거치기간 설정 가능!</span>
-            <span className="text-sm font-bold">(원금선납 거치 방식)</span>
+            {/* <span className="text-sm font-bold">(원금선납 거치 방식)</span> */}
           </p>
           <p className="font-bold">장기 거치에 유리합니다!</p>
         </div>
