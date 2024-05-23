@@ -358,8 +358,11 @@ export default function Home() {
           </div>
           <div className="flex mobile:text-xs justify-center">
             <div className="flex">
-              <p>(주)원트모기지</p>
-              <p className="mx-4">사업자등록번호 : 661-86-02715</p>
+              {/* <p>(주)원트모기지</p>
+              <p className="mx-4">사업자등록번호 : 661-86-02715</p> */}
+              <p className="mr-4">
+                (주)원트모기지 사업자등록번호 : 661-86-02715
+              </p>
               <p>대표자명 : 송호성</p>
             </div>
           </div>
