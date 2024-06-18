@@ -232,7 +232,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-between mt-14">
-            {Tilte?.map(({ title, value }) => {
+            {Tilte?.map(({ title, value }, i) => {
               const customStyle = () => {
                 if (type === value) {
                   return "text-orange-400 border-b-orange-400";
@@ -241,6 +241,7 @@ export default function Home() {
               };
               return (
                 <div
+                  key={i}
                   className={`w-1/2 border-b-4 text-lg font-bold text-stone-500 border-b-orange-100 text-center cursor-pointer transition-all ${customStyle()}`}
                   onClick={() => {
                     setType(value);
@@ -281,9 +282,10 @@ export default function Home() {
           </div>
           {/* 작업중 */}
           <div className="flex relative">
-            {Card?.map(({ title, subTitle, img, point, clickEvent }) => {
+            {Card?.map(({ title, subTitle, img, point, clickEvent }, i) => {
               return (
                 <button
+                  key={i}
                   className="border w-1/3 mx-1 rounded-2xl text-center p-2 shadow-md text-stone-500 hover:shadow-2xl"
                   onClick={clickEvent}
                 >
@@ -307,16 +309,19 @@ export default function Home() {
         <div className="mt-20 mobile:mt-10">
           {/* 컨테이너 */}
           <div className="p-4 bg-slate-50 rounded-lg">
-            {Info?.map(({ title, contents }) => {
+            {Info?.map(({ title, contents }, i) => {
               return (
-                <div className="flex border-b-2 py-2 last:border-none">
+                <div className="flex border-b-2 py-2 last:border-none" key={i}>
                   <div className="text-stone-700 mr-10 text-md font-bold w-32 mobile:text-sm mobile:w-24 mobile:mr-0">
                     {title}
                   </div>
                   <div>
-                    {contents?.map((content) => {
+                    {contents?.map((content, i) => {
                       return (
-                        <p className=" text-stone-600 text-sm mb-1 mobile:text-xs mobile:min-w-56">
+                        <p
+                          key={i}
+                          className=" text-stone-600 text-sm mb-1 mobile:text-xs mobile:min-w-56"
+                        >
                           {content}
                         </p>
                       );
@@ -332,9 +337,12 @@ export default function Home() {
             꼭 알아두실 내용!
           </div>
           <ul>
-            {Notice?.map((item) => {
+            {Notice?.map((item, i) => {
               return (
-                <li className="text-stone-500 mb-2 text-sm mobile:text-xs">
+                <li
+                  key={i}
+                  className="text-stone-500 mb-2 text-sm mobile:text-xs"
+                >
                   - {item}
                 </li>
               );

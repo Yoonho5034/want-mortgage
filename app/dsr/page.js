@@ -249,9 +249,9 @@ const page = () => {
       {/* 담보대출 조건 */}
       <div className="mt-8">
         {bondConditionArray?.map(
-          ({ title, placeholder, value, eventHandler, sub }) => {
+          ({ title, placeholder, value, eventHandler, sub }, i) => {
             return (
-              <div className="mt-4">
+              <div className="mt-4" key={i}>
                 <div className="flex items-center">
                   <p>{title}</p>
                   <span className="text-xs">{sub}</span>
@@ -270,13 +270,14 @@ const page = () => {
         <div className="mt-4">
           <p>상환방식</p>
           <div className="flex gap-2">
-            {bondTypeArray?.map(({ title, value }) => {
+            {bondTypeArray?.map(({ title, value }, i) => {
               const clickEvent = () => {
                 setBondType(value);
               };
               const isActive = bondType === value;
               return (
                 <div
+                  key={i}
                   className={classNames(
                     "flex bg-stone-100 w-1/2 rounded-lg h-10 items-center justify-center",
                     { "bg-stone-300": isActive }

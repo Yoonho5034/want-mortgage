@@ -106,12 +106,14 @@ const page = () => {
 
       {/* type */}
       <div className="flex justify-between gap-2">
-        {TypeArray.map(({ title, value }) => {
+        {TypeArray.map(({ title, value }, i) => {
           const onClick = () => {
             setType(value);
           };
           const isClick = Type === value;
-          return <Button title={title} onClick={onClick} isClick={isClick} />;
+          return (
+            <Button key={i} title={title} onClick={onClick} isClick={isClick} />
+          );
         })}
       </div>
       <div>
@@ -128,12 +130,19 @@ const page = () => {
       <div>
         <p>적용 LTV</p>
         <div className="flex gap-2">
-          {LtvArray?.map(({ title, value }) => {
+          {LtvArray?.map(({ title, value }, i) => {
             const onClick = () => {
               setLtv(value);
             };
             const isClick = Ltv === value;
-            return <Button title={title} onClick={onClick} isClick={isClick} />;
+            return (
+              <Button
+                key={i}
+                title={title}
+                onClick={onClick}
+                isClick={isClick}
+              />
+            );
           })}
         </div>
       </div>
@@ -141,12 +150,19 @@ const page = () => {
       <div>
         <p>선순위</p>
         <div className="flex gap-2">
-          {First?.map(({ value, title }) => {
+          {First?.map(({ value, title }, i) => {
             const onClick = () => {
               setFirstType(value);
             };
             const isClick = FirstType === value;
-            return <Button title={title} onClick={onClick} isClick={isClick} />;
+            return (
+              <Button
+                key={i}
+                title={title}
+                onClick={onClick}
+                isClick={isClick}
+              />
+            );
           })}
         </div>
         {FirstType === "money" && (
@@ -159,13 +175,14 @@ const page = () => {
               />
             </div>
             <div className="flex w-1/3">
-              {BondRateArray?.map(({ title, value }) => {
+              {BondRateArray?.map(({ title, value }, i) => {
                 const isClick = BondRate === value;
                 const onClick = () => {
                   setBondRate(value);
                 };
                 return (
                   <Button
+                    key={i}
                     title={title}
                     box
                     isClick={isClick}
@@ -187,13 +204,14 @@ const page = () => {
                 />
               </div>
               <div className="flex w-1/3">
-                {PeopleLivingType?.map(({ title, value }) => {
+                {PeopleLivingType?.map(({ title, value }, i) => {
                   const isClick = PeopleLiving === value;
                   const onClick = () => {
                     setPeopleLiving(value);
                   };
                   return (
                     <Button
+                      key={i}
                       title={title}
                       box
                       isClick={isClick}
@@ -207,13 +225,14 @@ const page = () => {
               <div>
                 <p>소액임차보증금</p>
                 <div className="flex gap-1">
-                  {MonthPayArray?.map(({ title, value }) => {
+                  {MonthPayArray?.map(({ title, value }, i) => {
                     const isClick = monthPay === value;
                     const onClick = () => {
                       setMonthPay(value);
                     };
                     return (
                       <Button
+                        key={i}
                         title={title}
                         isClick={isClick}
                         onClick={onClick}
@@ -223,13 +242,14 @@ const page = () => {
                 </div>
                 <p>방 갯수</p>
                 <div className="flex gap-1">
-                  {RoomCountArray?.map(({ title, value }) => {
+                  {RoomCountArray?.map(({ title, value }, i) => {
                     const isClick = roomCount === value;
                     const onClick = () => {
                       setRoomCount(value);
                     };
                     return (
                       <Button
+                        key={i}
                         title={title}
                         isClick={isClick}
                         onClick={onClick}

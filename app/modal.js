@@ -196,12 +196,12 @@ const modal = ({ modalHandler }) => {
         </div>
         {/* content */}
         <div>
-          {Notice?.map(({ title, content }) => {
+          {Notice?.map(({ title, content }, i) => {
             return (
-              <div className="text-sm mb-2">
+              <div className="text-sm mb-2" key={i}>
                 <p className="font-bold">{title}</p>
-                {content?.map((item) => {
-                  return <p>{item}</p>;
+                {content?.map((item, i) => {
+                  return <p key={i}>{item}</p>;
                 })}
               </div>
             );

@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Yoonho5034.github.io/want-mortgage",
   "name": "want-mortgage",
   "version": "0.1.0",
   "private": true,
@@ -6,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -17,6 +20,7 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "gh-pages": "^6.1.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1"
   }
