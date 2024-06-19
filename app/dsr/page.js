@@ -135,7 +135,10 @@ const page = () => {
     },
   ];
 
+  // dsr
   const [result, setResult] = react.useState(null);
+  // dti
+  const [dtiResult, setDitResult] = react.useState(null);
   // 신용대출 원리금 상환액
   const calculateValue = (
     debtorLoan,
@@ -209,6 +212,46 @@ const page = () => {
     }
   };
 
+  // dti 계산기
+  const dtiCalc = (
+    debtorLoan,
+    debtorLoanPriod,
+    debtorLoanRate,
+    debtorBond,
+    debtorBondRate,
+    debtorBondPriod,
+    bond,
+    bondRate,
+    bondPriod,
+    debtorRental,
+    debtorRentalRate,
+    debtorIncome
+  ) => {
+    const type1 =
+      (((((bond * 10000 * bondRate) / 1200) *
+        Math.pow(1 + bondRate / 1200, bondPriod)) /
+        (Math.pow(1 + bondRate / 1200, bondPriod) - 1)) *
+        12) /
+      10000
+        ? (((((bond * 10000 * bondRate) / 1200) *
+            Math.pow(1 + bondRate / 1200, bondPriod)) /
+            (Math.pow(1 + bondRate / 1200, bondPriod) - 1)) *
+            12) /
+          10000
+        : 0;
+
+    // 신용대출 원리금
+    const credit = (debtorLoan * debtorLoanRate) / 100;
+    // 담보대출 금리
+    const loan = (debtorBond * debtorBondRate) / 100;
+    // 전세대출
+    const rent = (debtorRental * debtorRentalRate) / 100;
+
+    console.log(debtorLoan, debtorLoanRate, "김윤호2");
+    console.log(type1, credit, loan, rent, debtorIncome, "김윤호");
+    return (type1 + credit + loan + rent) / debtorIncome;
+  };
+
   // 계산하기
   const handleCalculate = () => {
     const calculatedValue = calculateValue(
@@ -230,7 +273,27 @@ const page = () => {
       // 연봉
       debtorIncome
     );
+    const dtiValue = dtiCalc(
+      // 신용대출
+      debtorLoan,
+      debtorLoanPriod,
+      debtorLoanRate,
+      // 기담보대출
+      debtorBond,
+      debtorBondRate,
+      debtorBondPriod,
+      // 신규담보대출
+      bond,
+      bondRate,
+      bondPriod,
+      // 전세대출
+      debtorRental,
+      debtorRentalRate,
+      // 연봉
+      debtorIncome
+    );
     setResult(calculatedValue);
+    setDitResult(dtiValue);
   };
 
   return (
@@ -243,7 +306,9 @@ const page = () => {
         </div>
         <div className="w-1/2 h-20 bg-stone-100 rounded-lg">
           <p>DTI</p>
-          <p>40%</p>
+          {/* const dtiCalc = ( */}
+          {/* dtiResult */}
+          <p>{(Number(dtiResult) * 100)?.toFixed(2)}%</p>
         </div>
       </div>
       {/* 담보대출 조건 */}
