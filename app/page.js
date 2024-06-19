@@ -45,7 +45,7 @@ export default function Home() {
     // 상담사 등록번호
     "10-00048517",
     // 카카오톡 링크
-    "https://open.kakao.com/o/s3bm1vRf",
+    "https://open.kakao.com/o/scQs8Swg",
   ];
   const handleCall = () => {
     window.location.href = `tel:${User?.[1]}`; // 전화번호를 여기에 입력하세요
