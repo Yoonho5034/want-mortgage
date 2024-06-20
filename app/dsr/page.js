@@ -252,6 +252,12 @@ const page = () => {
     return (type1 + credit + loan + rent) / debtorIncome;
   };
 
+  const scrollToTop = () => {
+    window?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   // 계산하기
   const handleCalculate = () => {
     const calculatedValue = calculateValue(
@@ -294,6 +300,7 @@ const page = () => {
     );
     setResult(calculatedValue);
     setDitResult(dtiValue);
+    scrollToTop();
   };
 
   return (
