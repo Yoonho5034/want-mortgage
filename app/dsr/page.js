@@ -307,15 +307,15 @@ const page = () => {
     <div className="px-4 py-2 font-mono font-bold text-stone-500">
       {/* dsr / dti */}
       <div className="flex justify-around gap-2">
-        <div className="w-1/2 h-20 bg-stone-100 rounded-lg">
+        <div className="w-1/2 h-20 bg-stone-100 rounded-lg text-center">
           <p>DSR</p>
-          <p>{(Number(result) * 100)?.toFixed(2)}%</p>
+          <p className="text-xl pt-2">{(Number(result) * 100)?.toFixed(2)}%</p>
         </div>
-        <div className="w-1/2 h-20 bg-stone-100 rounded-lg">
+        <div className="w-1/2 h-20 bg-stone-100 rounded-lg text-center">
           <p>DTI</p>
-          {/* const dtiCalc = ( */}
-          {/* dtiResult */}
-          <p>{(Number(dtiResult) * 100)?.toFixed(2)}%</p>
+          <p className="text-xl pt-2">
+            {(Number(dtiResult) * 100)?.toFixed(2)}%
+          </p>
         </div>
       </div>
       {/* 담보대출 조건 */}
