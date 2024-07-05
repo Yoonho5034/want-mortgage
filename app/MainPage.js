@@ -151,7 +151,8 @@ export default function Home({ User }) {
       title: "DSR 비율",
       subTitle: "타 금융권 대비",
       point: "높은 한도",
-      img: "money.png",
+      // img: "money.png",
+      img: "dsrIMG.png",
       clickEvent: () => {
         dsrModalHandler();
       },
