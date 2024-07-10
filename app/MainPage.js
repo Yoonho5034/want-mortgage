@@ -41,12 +41,16 @@ export default function Home({ User }) {
   };
   const Info = [
     {
+      title: "상품명",
+      contents: ["홈드림 모기지론"],
+    },
+    {
       title: "금리유형",
       contents: ["연동형(변동금리)", "혼합형(고정금리 후 변동금리)"],
     },
     {
       title: "기준금리",
-      contents: ["전일국고채"],
+      contents: ["전월 국고채"],
     },
     {
       title: "변동주기",
@@ -57,7 +61,10 @@ export default function Home({ User }) {
       contents: [
         `${
           type === "Apt" ? "아파트" : "빌라(다세대주택)"
-        }를 담보로 제공하는 개인`,
+        }를 담보로 제공하는 개인
+        `,
+        `${type === "Apt" ? "(CB통합등급 : 1~7등급)" : "(CB통합등급 : 1~5등급)"}
+        `,
       ],
     },
     {
@@ -72,8 +79,8 @@ export default function Home({ User }) {
       title: "중도상환수수료",
       contents: [
         "- 기본형 : 3년이내 원금 상환시, 1.2%",
-        "- 선택 1 : 3년이내 원금 상환시 1.3%, 최초 대출금액 대비 30%까지 면제 (변동금리)",
-        "- 선택 2 : 3년이내 원금 상환시 1.5%, 최초 대출금액 대비 50%까지 면제 (고정금리)",
+        "- 선택 1 : 3년이내 원금 상환시 1.3%, 최초 대출금액 대비 30%까지 면제",
+        "- 선택 2 : 3년이내 원금 상환시 1.5%, 최초 대출금액 대비 50%까지 면제",
         "- 선택 3 : 6개월이내 원금 상환시, 1.5%(단, 금리 1.0% 가산)",
         "※ 잔존일수(중도상환수수료 부과기간 - 사용일수)에 따라 잔존만기별로 일할 계산",
         "※ 중도상환수수료 부과기간은 3년 동일 적용",
@@ -107,18 +114,31 @@ export default function Home({ User }) {
         "- 등기주소 변경 및 확인서면 비용",
       ],
     },
+    {
+      title: "상환방법",
+      contents: [
+        "1) 1,3,5년 거치 후, 잔여기간동안 원금 50%(100%) / 매월(년) 균등분할 상환",
+        "2) 대출 전기간 동안 원금의 50%(100%) / 매월(년)균등분할상환",
+      ],
+    },
   ];
 
   const Notice = [
-    "㈜원트모기지는 금융 관계 법률에 따라 한화생명 주식회사와 주택담보대출 모집 업무를 위탁 계약 체결하고 생명보험협회에 등록된 대출모집법인 입니다",
-    "㈜원트모기지는 일사전속주의에 따라 한화생명보험 주식회사와 대출 모집 위탁계약을 체결하고 생명보험협회에 등록된 대출모집법인 입니다.",
-    "㈜원트모기지는 한화생명보험 주식회사와 대출 모집 위탁계약을 체결한 법인으로 타 금융사 금융상품을 판매할 수 없습니다.",
+    "해당 대출상담사 및 ㈜원트모기지는 금융 관계 법률에 따라 한화생명 주식회사와 주택담보대출 모집업무를 위탁 계약 체결하고 생명보험협회에 등록된 대출모집인 (대출상담사, 대출모집법인) 입니다.",
+    "해당 대출상담사 및 ㈜원트모기지는 일사전속주의에 따라 한화생명보험 주식회사와 계약체결 및 대리, 중개하는 대출모집인(대출상담사, 대출모집법인) 입니다.",
+    "해당 대출상담사 및 ㈜원트모기지는 한화생명보험 주식회사와 대출모집 위탁계약을 체결한 법인으로 계약체결권을 부여받지 않았으며, 타 금융사 금융상품을 판매할 수 없습니다.",
+
+    // 기존
+    // "㈜원트모기지는 금융 관계 법률에 따라 한화생명 주식회사와 주택담보대출 모집 업무를 위탁 계약 체결하고 생명보험협회에 등록된 대출모집법인 입니다",
+    // "㈜원트모기지는 일사전속주의에 따라 한화생명보험 주식회사와 대출 모집 위탁계약을 체결하고 생명보험협회에 등록된 대출모집법인 입니다.",
+    // "㈜원트모기지는 한화생명보험 주식회사와 대출 모집 위탁계약을 체결한 법인으로 타 금융사 금융상품을 판매할 수 없습니다.",
     "대출상담사등록 여부 확인은 대출모집인 포털사이트(www.loanconsultant.or.kr)에서 대출상담사 등록번호와 휴대전화 번호를 입력하여 조회 가능합니다.",
     "대출상담사는 고객님께 별도의 수수료를 요구하거나 수취할 수 없으며, 대출실행여부는 한화생명보험 주식회사가 직접 심사해서 결정합니다.",
     "대출상담사 및 대출모집법인 대출모집 수수료율은 한화생명보험 주식회사 홈페이지(www.hanwhalife.com금융>대출>대출가이드>대출모집인 수수료율)에서 확인 가능합니다.",
     "대출계약을 체결하기 전에 금융상품설명서 및 약관을 반드시 읽어보시길 바랍니다.",
     "대출금리는 기준금리(국고채 3년, 5년을 적용)와 가산금리(업무원가, 위험프리미엄, 목표이익률 등)를 합산하여 산출되며, 최종 적용되는 대출금리는 고객의 개인신용평점, 거래실적, 대출조건 등에 따라 가감조정금리를 반영하여 적용합니다.",
     "고객님의 신용평점, 외부 규제 및 정책 등 제반조건에 따라 대출이 제한될 수 있으며, 대출 승인 후에도 개인정보의 변동(신용평점, 채무상환 계약조건 등)이 발생할 경우 대출실행이 불가할 수 있습니다.",
+    //
     "상환능력에 비해 대출금 및 신용카드사용액이 과도할 경우 귀하의 개인신용평점이 하락할 수 있습니다.",
     "여신금융상품 이용 시 개인신용평점 하락으로 다른 금융거래와 관련된 불이익이 발생할 수 있습니다.",
     "금융소비자는 금소법 제19조 제1항에 따라 해당 상품 또는 서비스에 대하여 설명을 받을 권리가 있으며, 그 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.",
@@ -131,8 +151,7 @@ export default function Home({ User }) {
   const Card = [
     {
       title: "중도상환수수료",
-      subTitle: "대출 원금의",
-      point: "50% 면제",
+      point: "최대 50% 면제",
       img: "coin.png",
       clickEvent: () => {
         refundModalHandler();
@@ -140,8 +159,7 @@ export default function Home({ User }) {
     },
     {
       title: "거치기간",
-      subTitle: "거치 설정",
-      point: "최장 5년",
+      point: "최장 1,3,5년",
       img: "calendar.png",
       clickEvent: () => {
         interestOnlyModalHandler();
@@ -149,8 +167,7 @@ export default function Home({ User }) {
     },
     {
       title: "DSR 비율",
-      subTitle: "타 금융권 대비",
-      point: "높은 한도",
+      point: "최대 50%",
       // img: "money.png",
       img: "dsrIMG.png",
       clickEvent: () => {
@@ -262,7 +279,7 @@ export default function Home({ User }) {
               감정가의 최대 70% 까지
             </p>
             <p className="text-gray-500 text-sm mobile:text-xs">
-              (대출금액, 신용도 등에 따라 차등 적용)
+              (담보물소재지, 대출금액, 고객신용, 소득 등에 따라 차등적용)
             </p>
           </div>
         </div>
@@ -285,10 +302,9 @@ export default function Home({ User }) {
                   <div className="font-bold mobile:text-sm">{title}</div>
                   <div>
                     <div className="flex justify-center items-end">
-                      <p className="text-sm text font-bold mr-2 mobile:hidden">
-                        {subTitle}
+                      <p className="font-bold text-orange-500 text-sm">
+                        {point}
                       </p>
-                      <p className="font-bold text-orange-500">{point}</p>
                     </div>
                   </div>
                 </button>
@@ -328,10 +344,14 @@ export default function Home({ User }) {
           </div>
           <ul>
             {Notice?.map((item, i) => {
+              const isColor = i === 9 || i === 10 || i === 12;
               return (
                 <li
                   key={i}
-                  className="text-stone-500 mb-2 text-sm mobile:text-xs"
+                  // className="text-stone-500 mb-2 text-sm mobile:text-xs"
+                  className={`${
+                    isColor ? "text-orange-500" : "text-stone-500"
+                  } mb-2 text-sm mobile:text-xs"`}
                 >
                   - {item}
                 </li>
@@ -361,14 +381,14 @@ export default function Home({ User }) {
               <p className="mx-4">사업자등록번호 : 661-86-02715</p> */}
               <p className="mr-4">
                 (주)원트모기지 사업자등록번호 : 661-86-02715
+                <p>대표자명 : 송호성</p>
               </p>
-              <p>대표자명 : 송호성</p>
             </div>
           </div>
           <div className="mobile:text-xs mobile:my-2">
             <p>
               주소 : 서울특별시 강서구 마곡동 759-3(마곡중앙로 161-17)
-              보타닉파크타워1차 616호
+              <p>보타닉파크타워1차 616호</p>
             </p>
           </div>
           <div className="flex justify-center mobile:text-xs">
@@ -376,6 +396,10 @@ export default function Home({ User }) {
               (주)한화생명 대출모집법인 (주)원트모기지 등록번호 : 20-00001189
             </p>
           </div>
+          <p className="mobile:text-xs">
+            <p>준법감시인확인필 LS 24-07-001 (’24.07.15 ~ ’25.07.14)</p>
+            관리 한화생명 융자마케팅사업부
+          </p>
         </div>
       </div>
       {isModalOpen ? <Modal modalHandler={() => modalHandler} /> : null}
