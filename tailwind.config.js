@@ -27,6 +27,9 @@ module.exports = {
         128: "32rem",
         160: "40rem",
       },
+      fontSize: {
+        xxs: ".5rem", // 기존 Tailwind 설정
+      },
     },
   },
   plugins: [],
