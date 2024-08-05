@@ -119,8 +119,8 @@ const page = () => {
               <button onClick={modalHandler}>{selected?.bankName}</button>
             </div>
             <div className="flex text-xxs gap-1 1 text-stone-400">
-              {selected?.special?.map((item) => {
-                return <ButtonBox item={item} />;
+              {selected?.special?.map((item, i) => {
+                return <ButtonBox item={item} key={i} />;
               })}
             </div>
             <div className="mt-3">
@@ -148,8 +148,14 @@ const page = () => {
               </div>
               <div>
                 <ul className="text-xs text-stone-400 ">
-                  {selected?.conditions?.map((condition) => {
-                    return <Option condition={condition} selected={selected} />;
+                  {selected?.conditions?.map((condition, i) => {
+                    return (
+                      <Option
+                        condition={condition}
+                        selected={selected}
+                        key={i}
+                      />
+                    );
                   })}
                 </ul>
               </div>
