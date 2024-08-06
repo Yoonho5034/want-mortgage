@@ -114,7 +114,7 @@ const page = () => {
     <>
       <div className="w-screen h-screen flex justify-center font-sans">
         <div className="flex items-center w-60 px-2">
-          <div className="w-full">
+          <div className="w-full ">
             <div className="font-bold mb-1">
               <button onClick={modalHandler}>{selected?.bankName}</button>
             </div>
@@ -142,7 +142,7 @@ const page = () => {
                 <span className="text-sm font-bold">만원</span>
               </p>
             </div>
-            <div className="mt-4 bg-stone-100 p-2 rounded-md">
+            <div className="mt-4 p-2 rounded-md bg-gradient-to-r from-blue-50 to-blue-200">
               <div className="font-semibold text-xs mb-1 text-stone-500 border-b pb-1">
                 부수거래
               </div>
