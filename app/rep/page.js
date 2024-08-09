@@ -3,6 +3,9 @@ import react from "react";
 import BankModal from "./bankModal";
 import Option from "./Option";
 import ButtonBox from "./ButtonBox";
+import MoneyInput from "../MoneyInput";
+import PayMoney from "./payMoney";
+import PayMoney2 from "./payMoney2";
 
 const page = () => {
   const BankArray = [
@@ -95,19 +98,53 @@ const page = () => {
     setOpenModal((prev) => !prev);
   };
 
-  const [value, setValue] = react.useState("");
-
-  // 입력값을 1000단위로 쉼표를 추가하여 포맷팅하는 함수
-  const formatNumber = (num) => {
-    if (!num) return "";
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const [repaymentType, setRepaymentType] = react.useState("원리금 균등");
+  const repaymentHandler = () => {
+    if (repaymentType === "원리금 균등") {
+      setRepaymentType("원금 균등");
+      return;
+    }
+    setRepaymentType("원리금 균등");
   };
 
-  const handleChange = (e) => {
-    const inputValue = e.target.value.replace(/,/g, ""); // 쉼표 제거
-    if (!isNaN(inputValue)) {
-      setValue(formatNumber(inputValue));
+  const [preiod, setPreiod] = react.useState(0);
+  const preiodHandler = () => {
+    if (preiod === 3) {
+      setPreiod(0);
+      return;
     }
+    setPreiod((prev) => prev + 1);
+  };
+  const preiodReturn = () => {
+    if (preiod === 0) {
+      return "5년 고정";
+    }
+    if (preiod === 1) {
+      return "6개월 변동";
+    }
+    if (preiod === 2) {
+      return "1년 변동";
+    }
+    if (preiod === 3) {
+      return "3년 고정";
+    }
+  };
+
+  const [isOnlyPay, setIsOnlyPay] = react.useState(false);
+  const onlyPayHandler = () => {
+    setIsOnlyPay((prev) => !prev);
+  };
+
+  const [money, setMoney] = react.useState(null);
+  const [rate, setRate] = react.useState(null);
+
+  const [free, setFree] = react.useState("3년 간");
+  const freeHandler = () => {
+    if (free === "3년 간") {
+      setFree("3년 간, 매년");
+      return;
+    }
+    setFree("3년 간");
   };
 
   return (
@@ -118,31 +155,74 @@ const page = () => {
             <div className="font-bold mb-1">
               <button onClick={modalHandler}>{selected?.bankName}</button>
             </div>
-            <div className="flex text-xxs gap-1 1 text-stone-400">
+            {/* <div className="flex text-xxs gap-1 1 text-stone-400">
               {selected?.special?.map((item, i) => {
                 return <ButtonBox item={item} key={i} />;
               })}
-            </div>
+            </div> */}
             <div className="mt-3">
               <p className="text-xxs text-stone-500">내 금리</p>
               <p className="font-bold text-xl text-blue-500 flex items-baseline">
-                <input placeholder="9.99" className="w-12" />
+                <input
+                  placeholder="9.99"
+                  className="w-12"
+                  onChange={(e) => setRate(e.target.value)}
+                />
                 <span className="text-sm font-bold">%</span>
               </p>
             </div>
-            <div className="mt-3">
+            <div className="mt-3 border-b-2 border-blue-200 pb-1">
               <p className="text-xxs text-stone-500">내 대출한도</p>
-              <p className="font-bold text-xl text-blue-500">
-                <input
-                  placeholder="10000"
-                  className="w-20"
-                  value={value}
-                  onChange={handleChange}
-                />
-                <span className="text-sm font-bold">만원</span>
-              </p>
+              <MoneyInput setMoney={setMoney} />
             </div>
-            <div className="mt-4 p-2 rounded-md bg-gradient-to-r from-blue-50 to-blue-200">
+            <div className="text-xs font-bold text-stone-500 mt-2 border-b-2 border-blue-200 pb-1">
+              <div className="flex justify-between">
+                <p>상환방식</p>
+                <button onClick={preiodHandler}>
+                  <p>40년 만기 {preiodReturn()}</p>
+                </button>
+              </div>
+              <div className="flex justify-between mt-1">
+                <p>거치기간</p>
+                {isOnlyPay ? (
+                  <input placeholder="1년 사용" className="text-right" />
+                ) : (
+                  <button onClick={onlyPayHandler}>
+                    <p>미사용</p>
+                  </button>
+                )}{" "}
+              </div>
+              <div className="flex justify-between mt-1">
+                <p>상환방식</p>
+                <p>
+                  <button onClick={repaymentHandler}>{repaymentType}</button>
+                </p>
+              </div>
+              <div className="flex justify-between mt-1">
+                <p>
+                  중도상환 수수료율<span className="text-xxs">(일할차감)</span>
+                </p>
+                <span>
+                  <input className="w-10 text-right" placeholder="1.2" />%
+                </span>
+              </div>
+              <div className="flex justify-between mt-1">
+                <button onClick={freeHandler}>
+                  면제비율<span className="text-xxs">({free})</span>
+                </button>
+                <span>
+                  <input className="w-10 text-right" placeholder="10" />%
+                </span>
+              </div>
+            </div>
+            {/* 상환금액 */}
+            {repaymentType === "원리금 균등" ? (
+              <PayMoney money={money} rate={rate} />
+            ) : (
+              <PayMoney2 money={money} rate={rate} />
+            )}
+            {/* 부수거래 */}
+            <div className="mt-4 p-2 rounded-md bg-stone-100">
               <div className="font-semibold text-xs mb-1 text-stone-500 border-b pb-1">
                 부수거래
               </div>
