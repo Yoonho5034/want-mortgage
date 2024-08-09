@@ -6,52 +6,69 @@ import ButtonBox from "./ButtonBox";
 import MoneyInput from "../MoneyInput";
 import PayMoney from "./payMoney";
 import PayMoney2 from "./payMoney2";
+import Cookies from "js-cookie";
 
 const page = () => {
   const BankArray = [
     {
       id: 1,
       bankName: "국민은행",
-      conditions: ["급여이체", "카드사용", "자동이체", "적금", "스마트뱅킹"],
+      conditions: [
+        "급여이체 월 50만",
+        "카드사용 월 30만",
+        "자동이체 3건",
+        "적금 30만(잔고유지)",
+        "스마트뱅킹",
+      ],
     },
     {
       id: 2,
       bankName: "경남은행(모바일)",
-      conditions: ["급여이체", "카드사용", "통장잔고 유지"],
+      conditions: ["카드사용 월 50만", "통장잔고 유지(100만)"],
     },
     {
       id: 3,
       bankName: "경남은행",
-      conditions: ["급여이체", "카드사용", "통장잔고 유지", "자동이체", "적금"],
+      conditions: [
+        "급여이체 월 50만",
+        "통장잔고 유지(100만)",
+        "카드사용 월 50만",
+        "자동이체 2건",
+      ],
     },
     {
       id: 4,
       bankName: "기업은행",
       conditions: [
-        "급여이체",
-        "카드사용",
-        "적금",
-        "자동이체",
-        "청약",
-        "스마트뱅킹",
-        "ISA 종합자산관리계좌",
+        "급여이체 월 50만",
+        "카드사용 월 50만",
+        "적금 월 10만",
+        "자동이체 3건(공과금)",
+        "청약 가입",
+        "스마트뱅킹 월 2회",
+        "ISA 종합자산관리계좌 가입",
       ],
       special: ["중소기업 재직"],
     },
     {
       id: 5,
       bankName: "농협은행",
-      conditions: ["급여이체", "카드사용", "적금", "자동이체"],
+      conditions: [
+        "급여이체 월 150만",
+        "카드사용 월 34만",
+        "적금 10만",
+        "자동이체 3건",
+      ],
     },
     {
       id: 6,
       bankName: "대구은행",
       conditions: [
-        "급여이체",
-        "카드사용",
-        "적금 or 청약",
-        "자동이체",
-        "통장 잔고유지",
+        "급여이체 월 100만",
+        "카드사용 월 30만",
+        "적금 월 30만 or 청약 월 5만",
+        "자동이체 3건",
+        "통장 잔고유지 (100만)",
       ],
       special: ["노부모 부양", "미성년 3자녀", "모범 납세자"],
     },
@@ -59,35 +76,39 @@ const page = () => {
       id: 7,
       bankName: "부산은행",
       conditions: [
-        "급여이체",
-        "카드사용",
-        "자동이체",
-        "통장 잔고유지",
+        "급여이체 월 50만",
+        "카드사용 월 70만",
+        "자동이체 3건",
+        "통장 잔고유지 (100만)",
         "스마트 뱅킹",
       ],
     },
     {
       id: 8,
       bankName: "신한은행",
-      conditions: ["급여이체3", "카드사용3", "청약가입3"],
+      conditions: [
+        "급여이체 월 50만",
+        "카드사용 월 17만",
+        "청약 월 10만 or 적금 월 10만",
+      ],
     },
     {
       id: 9,
       bankName: "우리은행",
       conditions: [
-        "급여이체",
-        "카드사용",
-        "적금 or 청약",
+        "급여이체 월 100만",
+        "카드사용 월 30만",
+        "적금 10만 or 청약 2만",
         "청약 신규가입",
         "스마트 뱅킹",
-        "자동일체",
+        "자동이체 1건",
       ],
       special: ["사회저 배려대상자"],
     },
     {
       id: 10,
       bankName: "하나은행",
-      conditions: ["급여이체", "카드사용", "적금 or 청약"],
+      conditions: ["급여이체 월 100만", "카드사용 월 30만", "적금 월 10만 or 청약 월 2만"],
       special: ["미성년 2자녀", "미성년 3자녀"],
     },
   ];
@@ -147,6 +168,34 @@ const page = () => {
     setFree("3년 간");
   };
 
+  // 쿠키설정
+  const [name, setName] = react.useState(null);
+  const [contact, setContact] = react.useState(null);
+  const [savedName, setSavedName] = react.useState(null);
+  const [savedContact, setSavedContact] = react.useState(null);
+
+  // 쿠키 저장 함수
+  const saveToCookies = () => {
+    Cookies.set("name", name);
+    Cookies.set("contact", contact);
+  };
+
+  // 쿠키 불러오기 함수
+  const loadFromCookies = () => {
+    const savedName = Cookies.get("name");
+    const savedContact = Cookies.get("contact");
+
+    if (savedName && savedContact) {
+      setSavedName(savedName);
+      setSavedContact(savedContact);
+    }
+  };
+
+  // 컴포넌트가 마운트될 때 쿠키를 불러옴
+  react.useEffect(() => {
+    loadFromCookies();
+  }, []);
+
   return (
     <>
       <div className="w-screen h-screen flex justify-center font-sans">
@@ -164,7 +213,7 @@ const page = () => {
               <p className="text-xxs text-stone-500">내 금리</p>
               <p className="font-bold text-xl text-blue-500 flex items-baseline">
                 <input
-                  placeholder="9.99"
+                  placeholder="4.00"
                   className="w-12"
                   onChange={(e) => setRate(e.target.value)}
                 />
@@ -182,7 +231,7 @@ const page = () => {
                   <p>40년 만기 {preiodReturn()}</p>
                 </button>
               </div>
-              <div className="flex justify-between mt-1">
+              {/* <div className="flex justify-between mt-1">
                 <p>거치기간</p>
                 {isOnlyPay ? (
                   <input placeholder="1년 사용" className="text-right" />
@@ -191,9 +240,9 @@ const page = () => {
                     <p>미사용</p>
                   </button>
                 )}{" "}
-              </div>
+              </div> */}
               <div className="flex justify-between mt-1">
-                <p>상환방식</p>
+                <p>상환방법</p>
                 <p>
                   <button onClick={repaymentHandler}>{repaymentType}</button>
                 </p>
@@ -240,6 +289,26 @@ const page = () => {
                 </ul>
               </div>
             </div>
+            {savedName ? (
+              <div className="flex justify-between text-sm font-bold mt-2 font-mono items-baseline">
+                <p className="text-xs">대출상담사 {savedName}</p>
+                <p>{savedContact}</p>
+              </div>
+            ) : (
+              <div>
+                <input
+                  placeholder="상담사 이름"
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  placeholder="상담번호"
+                  onChange={(e) => setContact(e.target.value)}
+                />
+                <button onClick={saveToCookies} className="cursor-pointer">
+                  저장하기
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
