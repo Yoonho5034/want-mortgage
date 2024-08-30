@@ -108,8 +108,32 @@ const page = () => {
     {
       id: 10,
       bankName: "하나은행",
-      conditions: ["급여이체 월 100만", "카드사용 월 30만", "적금 월 10만 or 청약 월 2만"],
+      conditions: [
+        "급여이체 월 100만",
+        "카드사용 월 30만",
+        "적금 월 10만 or 청약 월 2만",
+      ],
       special: ["미성년 2자녀", "미성년 3자녀"],
+    },
+    {
+      id: 11,
+      bankName: "한화생명",
+      conditions: ["저축성 보험 월 11만"],
+    },
+    {
+      id: 12,
+      bankName: "교보생명",
+      conditions: ["없음"],
+    },
+    {
+      id: 13,
+      bankName: "농협손해보험",
+      conditions: ["없음"],
+    },
+    {
+      id: 14,
+      bankName: "KB손해보험",
+      conditions: ["없음"],
     },
   ];
 
@@ -289,7 +313,8 @@ const page = () => {
                 </ul>
               </div>
             </div>
-            {savedName ? (
+            {/* 상담사 이름 / 연락처 */}
+            {/* {savedName ? (
               <div className="flex justify-between text-sm font-bold mt-2 font-mono items-baseline">
                 <p className="text-xs">대출상담사 {savedName}</p>
                 <p>{savedContact}</p>
@@ -308,7 +333,7 @@ const page = () => {
                   저장하기
                 </button>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
