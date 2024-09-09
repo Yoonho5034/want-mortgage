@@ -32,8 +32,8 @@ export default function Home({ User }) {
   ];
   // 금리 정보
   const Rate = [
-    { value: "Apt", rate: "연 3.92% ~ 5.75%" },
-    { value: "Villa", rate: "연 4.12% ~ 5.95%" },
+    { value: "Apt", rate: "연 4.35% ~ 5.75%" },
+    { value: "Villa", rate: "연 4.55% ~ 5.95%" },
     "( 2024년 9월 기준 )",
   ];
   const handleCall = () => {
