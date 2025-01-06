@@ -32,9 +32,9 @@ export default function Home({ User }) {
   ];
   // 금리 정보
   const Rate = [
-    { value: "Apt", rate: "연 4.46% ~ 5.97%" },
-    { value: "Villa", rate: "연 4.66% ~ 6.17%" },
-    "( 2024년 12월 기준 )",
+    { value: "Apt", rate: "연 4.18% ~ 5.69%" },
+    { value: "Villa", rate: "연 4.38% ~ 5.89%" },
+    "( 2025년 1월 기준 )",
   ];
   const handleCall = () => {
     window.location.href = `tel:${User?.[1]}`; // 전화번호를 여기에 입력하세요
