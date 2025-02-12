@@ -4,7 +4,7 @@ import MainPage from "../MainPage";
 const page = () => {
   const User = [
     // 이름
-    "이홍주",
+    "이흥주",
     // 전화번호
     "010-4140-6574",
     // 상담사 등록번호
