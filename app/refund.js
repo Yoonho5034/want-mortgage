@@ -61,10 +61,10 @@ const refundModal = ({ refundModalHandler }) => {
           <p>
             <span>3년 이내 50% 초과하는 금액은, </span>
             <span className="font-bold text-orange-400 mr-1">
-              1.3% 수수료율 적용
+              1.0% 수수료율 적용
             </span>
             <span className="text-sm font-bold">
-              (변동금리 상품기준, 일할차감 적용)
+              (3년 간 일할차감 적용)
             </span>
           </p>
           <p className="font-bold">단기상환 시 유리합니다!</p>
