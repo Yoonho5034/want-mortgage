@@ -186,7 +186,8 @@ export default function Home({ User }) {
       <div className=" max-w-screen-md mx-auto">
         <div className="py-2 flex items-center justify-between h-20 mobile:h-14 ">
           <div className="px-2 ">
-            <img src="./logo.png" className="w-40 mobile:w-24" />
+            {/* <img src="./logo.png" className="w-40 mobile:w-24" /> */}
+            <img src="./wantM.png" className="w-40 mobile:w-24" />
           </div>
           <div className="px-2 text-stone-400 font-bold text-sm mobile:text-xs">
             한화생명 대출모집법인 원트모기지
@@ -203,12 +204,9 @@ export default function Home({ User }) {
         {/* body */}
         <div className="mt-100 px-2">
           {/* 메인문구 */}
-          <div className="pt-10">
-            <div className="flex justify-between mobile:block">
-              <div className="flex items-center">
-                <div className=" size-14 rounded-full">
-                  <img src="./Icon.png" />
-                </div>
+          <div className="pt-10 mobile:pt-0">
+            <div className="flex justify-between mobile:block ">
+              <div className="flex items-center justify-between">
                 <div className="pl-4">
                   <p className="text-sm text-gray-400 mobile:text-xs">
                     대출상담사 등록번호 {User?.[2]}
@@ -222,8 +220,11 @@ export default function Home({ User }) {
                     {User?.[1]}
                   </p>
                 </div>
+                <div className="flex items-center size-24 md:hidden">
+                  <img src="./wantM.png" className="items-center" />
+                </div>
               </div>
-              <div className="flex mobile:mt-4">
+              <div className="flex mobile:mt-2">
                 <button
                   className="bg-gradient-to-tr from-orange-600 to-orange-300 w-36 text-white font-bold text-2xl flex items-center justify-center rounded-2xl shadow-lg mr-2 mobile:rounded-md mobile:w-1/2 mobile:py-2 hover:from-orange-400 hover:to-orange-600"
                   onClick={handleCall}
