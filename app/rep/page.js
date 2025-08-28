@@ -152,36 +152,11 @@ const page = () => {
     setRepaymentType("원리금 균등");
   };
 
-  const [preiod, setPreiod] = react.useState(0);
-  const preiodHandler = () => {
-    if (preiod === 3) {
-      setPreiod(0);
-      return;
-    }
-    setPreiod((prev) => prev + 1);
-  };
-  const preiodReturn = () => {
-    if (preiod === 0) {
-      return "5년 고정";
-    }
-    if (preiod === 1) {
-      return "6개월 변동";
-    }
-    if (preiod === 2) {
-      return "1년 변동";
-    }
-    if (preiod === 3) {
-      return "3년 고정";
-    }
-  };
-
-  const [isOnlyPay, setIsOnlyPay] = react.useState(false);
-  const onlyPayHandler = () => {
-    setIsOnlyPay((prev) => !prev);
-  };
+  const [fixed, setFixed] = react.useState(null);
 
   const [money, setMoney] = react.useState(null);
   const [rate, setRate] = react.useState(null);
+  const [preiod, setPreiod] = react.useState(30);
 
   const [free, setFree] = react.useState("3년 간");
   const freeHandler = () => {
@@ -223,8 +198,8 @@ const page = () => {
   return (
     <>
       <div className="w-screen h-screen flex justify-center font-sans">
-        <div className="flex items-center w-60 px-2">
-          <div className="w-full ">
+        <div className="flex items-center w-60 px-2 scale-150 ">
+          <div className="w-full">
             <div className="font-bold mb-1">
               <button onClick={modalHandler}>{selected?.bankName}</button>
             </div>
@@ -235,7 +210,7 @@ const page = () => {
             </div> */}
             <div className="mt-3">
               <p className="text-xxs text-stone-500">내 금리</p>
-              <p className="font-bold text-xl text-blue-500 flex items-baseline">
+              <p className="font-bold text-xl text-blue-500 flex items-baseline justify-end">
                 <input
                   placeholder="4.00"
                   className="w-12"
@@ -248,23 +223,40 @@ const page = () => {
               <p className="text-xxs text-stone-500">내 대출한도</p>
               <MoneyInput setMoney={setMoney} />
             </div>
-            <div className="text-xs font-bold text-stone-500 mt-2 border-b-2 border-blue-200 pb-1">
+            <div className="text-xs font-bold text-stone-500 mt-2 border-b-2 border-blue-200 pb-1 ">
               <div className="flex justify-between">
                 <p>상환방식</p>
-                <button onClick={preiodHandler}>
-                  <p>40년 만기 {preiodReturn()}</p>
-                </button>
+                {/* <button onClick={preiodHandler} className="flex">
+                  <p className="flex pr-2">
+                    <input className="w-8 text-right" placeholder="40" />
+                    <span>년 만기</span>
+                  </p>
+                </button> */}
+                <div className="flex">
+                  <div className="flex pr-2">
+                    <input
+                      className="w-8 text-right"
+                      placeholder="30"
+                      onChange={(e) => setPreiod(e.target.value)}
+                    />
+                    <span>년 만기</span>
+                  </div>
+                  <button onClick={() => setFixed(null)}>{fixed}</button>
+                </div>
               </div>
-              {/* <div className="flex justify-between mt-1">
-                <p>거치기간</p>
-                {isOnlyPay ? (
-                  <input placeholder="1년 사용" className="text-right" />
-                ) : (
-                  <button onClick={onlyPayHandler}>
-                    <p>미사용</p>
+              {fixed ? null : (
+                <div className="text-xxs flex justify-between">
+                  <button onClick={() => setFixed("3개월 변동")}>
+                    3개월 변동
                   </button>
-                )}{" "}
-              </div> */}
+                  <button onClick={() => setFixed("6개월 변동")}>
+                    6개월 변동
+                  </button>
+                  <button onClick={() => setFixed("1년 변동")}>1년 변동</button>
+                  <button onClick={() => setFixed("3년 고정")}>3년 고정</button>
+                  <button onClick={() => setFixed("5년 고정")}>5년 고정</button>
+                </div>
+              )}
               <div className="flex justify-between mt-1">
                 <p>상환방법</p>
                 <p>
@@ -290,9 +282,9 @@ const page = () => {
             </div>
             {/* 상환금액 */}
             {repaymentType === "원리금 균등" ? (
-              <PayMoney money={money} rate={rate} />
+              <PayMoney money={money} rate={rate} preiod={preiod} />
             ) : (
-              <PayMoney2 money={money} rate={rate} />
+              <PayMoney2 money={money} rate={rate} preiod={preiod} />
             )}
             {/* 부수거래 */}
             <div className="mt-4 p-2 rounded-md bg-stone-100">

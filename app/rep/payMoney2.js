@@ -1,7 +1,7 @@
 // 원금균등
 import React, { useState } from "react";
 
-const PrincipalEqualPaymentCalculator = ({ rate, money }) => {
+const PrincipalEqualPaymentCalculator = ({ rate, money, preiod }) => {
   const [monthlyPrincipalPayment, setMonthlyPrincipalPayment] = useState("");
   const [firstMonthInterest, setFirstMonthInterest] = useState("");
   const [firstMonthTotalPayment, setFirstMonthTotalPayment] = useState("");
@@ -18,7 +18,7 @@ const PrincipalEqualPaymentCalculator = ({ rate, money }) => {
   const handleCalculate = () => {
     const pv = parseFloat(money);
     const annualRateValue = parseFloat(rate);
-    const totalPeriods = 40 * 12; // 40 years in months
+    const totalPeriods = preiod * 12; // 40 years in months
 
     if (!isNaN(pv) && !isNaN(annualRateValue)) {
       const { monthlyPrincipal, firstMonthInterest, firstMonthTotalPayment } =
@@ -49,7 +49,8 @@ const PrincipalEqualPaymentCalculator = ({ rate, money }) => {
         <div className="flex gap-2 w-full justify-between">
           <p>원금</p>
           <div>
-            {Math.floor((monthlyPrincipalPayment / 1) * 10000).toLocaleString()}원
+            {Math.floor((monthlyPrincipalPayment / 1) * 10000).toLocaleString()}
+            원
           </div>
         </div>
         <div className="flex gap-2 w-full justify-between">
@@ -61,7 +62,8 @@ const PrincipalEqualPaymentCalculator = ({ rate, money }) => {
         <div className="flex gap-2 w-full justify-between text-sm">
           <div>합계</div>
           <div>
-            {Math.floor((firstMonthTotalPayment / 1) * 10000).toLocaleString()}원
+            {Math.floor((firstMonthTotalPayment / 1) * 10000).toLocaleString()}
+            원
           </div>
         </div>
       </div>

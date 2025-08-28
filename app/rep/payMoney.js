@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-const LoanCalculator = ({ money, rate }) => {
+const LoanCalculator = ({ money, rate, preiod }) => {
   const [monthlyPayment, setMonthlyPayment] = useState("");
   const [firstMonthPrincipal, setFirstMonthPrincipal] = useState("");
   const [firstMonthInterest, setFirstMonthInterest] = useState("");
@@ -29,7 +29,7 @@ const LoanCalculator = ({ money, rate }) => {
   const handleCalculate = () => {
     const pv = parseFloat(money);
     const annualRateValue = parseFloat(rate);
-    const totalPeriods = 40 * 12; // 40 years in months
+    const totalPeriods = preiod * 12; // 40 years in months
 
     if (!isNaN(pv) && !isNaN(annualRateValue)) {
       const { payment, firstMonthPrincipal, firstMonthInterest } =

@@ -51,22 +51,22 @@ const MoneyInput = ({ setMoney }) => {
   };
 
   return (
-    <div className="font-bold text-xl text-blue-500">
+    <div className="font-bold text-xl text-blue-500 ">
       {!isOpen ? (
         <input
           placeholder="10000"
-          className="w-full"
+          className="w-full text-right"
           value={inputValue}
           onChange={handleChange}
           onBlur={openHandler}
         />
       ) : (
         <button
-          className="cursor-pointer w-full text-left"
+          className="cursor-pointer w-full text-left "
           onClick={openHandler}
         >
           {}
-          <p className="w-full">
+          <p className="w-full text-right">
             {convertedValue ? convertedValue : "금액입력"}
           </p>
         </button>
