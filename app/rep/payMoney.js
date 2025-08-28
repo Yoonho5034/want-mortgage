@@ -49,7 +49,7 @@ const LoanCalculator = ({ money, rate, preiod }) => {
       <div className="text-xs">
         <button onClick={handleCalculate}>1회차 상환금액</button>
       </div>
-      <div className="text-xs">
+      <div className="text-xxs">
         <div className="flex gap-2 w-full justify-between">
           <p>원금</p>
           <div>
@@ -62,9 +62,9 @@ const LoanCalculator = ({ money, rate, preiod }) => {
             {Math.floor((firstMonthInterest / 1) * 10000).toLocaleString()}원
           </div>
         </div>
-        <div className="flex gap-2 w-full justify-between text-sm">
-          <div>합계</div>
-          <div>
+        <div className="flex gap-2 w-full justify-between text-sm items-baseline ">
+          <div className="text-xxs">월 상환금</div>
+          <div className="text-blue-500">
             {Math.floor((monthlyPayment / 1) * 10000).toLocaleString()}원
           </div>
         </div>

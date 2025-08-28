@@ -200,8 +200,13 @@ const page = () => {
       <div className="w-screen h-screen flex justify-center font-sans">
         <div className="flex items-center w-60 px-2 scale-150 ">
           <div className="w-full">
-            <div className="font-bold mb-1">
+            <div className="font-bold mb-1 flex justify-between items-baseline">
               <button onClick={modalHandler}>{selected?.bankName}</button>
+              <p className="text-stone-400 text-xxs">
+                {new Date().getFullYear()}.
+                {String(new Date().getMonth() + 1).padStart(2, "0")}.
+                {String(new Date().getDate()).padStart(2, "0")}
+              </p>
             </div>
             {/* <div className="flex text-xxs gap-1 1 text-stone-400">
               {selected?.special?.map((item, i) => {
@@ -211,13 +216,29 @@ const page = () => {
             <div className="mt-3">
               <p className="text-xxs text-stone-500">내 금리</p>
               <p className="font-bold text-xl text-blue-500 flex items-baseline justify-end">
+                <span className="text-xs mr-2 text-blue-500">
+                  <button onClick={() => setFixed(null)}>{fixed}</button>
+                </span>
                 <input
                   placeholder="4.00"
-                  className="w-12"
+                  className="w-11 text-right mr-1"
                   onChange={(e) => setRate(e.target.value)}
                 />
                 <span className="text-sm font-bold">%</span>
               </p>
+              {fixed ? null : (
+                <div className="text-xxs flex justify-between">
+                  <button onClick={() => setFixed("3개월 변동")}>
+                    3개월 변동
+                  </button>
+                  <button onClick={() => setFixed("6개월 변동")}>
+                    6개월 변동
+                  </button>
+                  <button onClick={() => setFixed("1년 변동")}>1년 변동</button>
+                  <button onClick={() => setFixed("3년 고정")}>3년 고정</button>
+                  <button onClick={() => setFixed("5년 고정")}>5년 고정</button>
+                </div>
+              )}
             </div>
             <div className="mt-3 border-b-2 border-blue-200 pb-1">
               <p className="text-xxs text-stone-500">내 대출한도</p>
@@ -233,7 +254,7 @@ const page = () => {
                   </p>
                 </button> */}
                 <div className="flex">
-                  <div className="flex pr-2">
+                  <div className="flex ">
                     <input
                       className="w-8 text-right"
                       placeholder="30"
@@ -241,22 +262,9 @@ const page = () => {
                     />
                     <span>년 만기</span>
                   </div>
-                  <button onClick={() => setFixed(null)}>{fixed}</button>
+                  {/* <button onClick={() => setFixed(null)}>{fixed}</button> */}
                 </div>
               </div>
-              {fixed ? null : (
-                <div className="text-xxs flex justify-between">
-                  <button onClick={() => setFixed("3개월 변동")}>
-                    3개월 변동
-                  </button>
-                  <button onClick={() => setFixed("6개월 변동")}>
-                    6개월 변동
-                  </button>
-                  <button onClick={() => setFixed("1년 변동")}>1년 변동</button>
-                  <button onClick={() => setFixed("3년 고정")}>3년 고정</button>
-                  <button onClick={() => setFixed("5년 고정")}>5년 고정</button>
-                </div>
-              )}
               <div className="flex justify-between mt-1">
                 <p>상환방법</p>
                 <p>
