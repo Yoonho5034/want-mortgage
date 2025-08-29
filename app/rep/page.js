@@ -181,6 +181,45 @@ const page = () => {
       conditions: ["없음"],
     },
   ];
+  const JsbankArray = [
+    {
+      id: 101,
+      bankName: "우리은행",
+      conditions: [
+        "급여이체 월 100만",
+        "카드사용 월 30만",
+        "적금 10만",
+        "부동산 전자계약",
+      ],
+      special: ["사회저 배려대상자"],
+    },
+    {
+      id: 102,
+      bankName: "ABL 생명",
+      conditions: ["없음"],
+      special: ["사회저 배려대상자"],
+    },
+    {
+      id: 103,
+      bankName: "단위 신협",
+      conditions: ["건별 확인 필요"],
+    },
+    {
+      id: 104,
+      bankName: "단위 농협",
+      conditions: ["건별 확인 필요"],
+    },
+    {
+      id: 105,
+      bankName: "단위 수협",
+      conditions: ["건별 확인 필요"],
+    },
+    {
+      id: 105,
+      bankName: "새마을 금고",
+      conditions: ["건별 확인 필요"],
+    },
+  ];
 
   const [selected, setSelected] = react.useState(BankArray[0]);
   const [openModal, setOpenModal] = react.useState(false);
@@ -240,6 +279,29 @@ const page = () => {
     loadFromCookies();
   }, []);
 
+  // 전세대출
+  const securityArray = [
+    { id: 1, label: "3개월 변동", value: "3개월 변동" },
+    { id: 2, label: "6개월 변동", value: "6개월 변동" },
+    { id: 3, label: "1년 변동", value: "1년 변동" },
+    { id: 4, label: "3년 고정", value: "3년 고정" },
+    { id: 5, label: "5년 고정", value: "5년 고정" },
+  ];
+
+  const jsArray = [
+    { id: 1, label: "6개월 변동", value: "6개월 변동" },
+    { id: 2, label: "1년 변동", value: "1년 변동" },
+    { id: 3, label: "2년 고정", value: "2년 고정" },
+  ];
+  const jsTypeArray = [
+    { id: 1, label: "SGI", value: "SGI" },
+    { id: 2, label: "HF", value: "HF" },
+    { id: 3, label: "HUG", value: "HUG" },
+  ];
+
+  const renderArray = selected.id >= 100 ? jsArray : securityArray;
+  const [jsType, setJsType] = react.useState(null);
+
   return (
     <>
       <div className="flex items-center justify-center h-screen overflow-hidden font-sans">
@@ -249,13 +311,39 @@ const page = () => {
         >
           <div className="w-full">
             <div className="font-bold mb-1 flex justify-between items-baseline">
-              <button onClick={modalHandler}>{selected?.bankName}</button>
+              <div>
+                <button onClick={modalHandler}>{selected?.bankName}</button>
+                {jsType && selected.id >= 100 && (
+                  <button
+                    className="border text-xxs border-blue-300 ml-1 px-1 bg-blue-300 rounded-xl text-white"
+                    onClick={() => setJsType(null)}
+                  >
+                    {jsType}
+                  </button>
+                )}
+              </div>
               <p className="text-stone-400 text-xxs">
                 {new Date().getFullYear()}.
                 {String(new Date().getMonth() + 1).padStart(2, "0")}.
                 {String(new Date().getDate()).padStart(2, "0")}
               </p>
             </div>
+            {(selected.id >= 100) & (jsType === null) ? (
+              <>
+                {jsTypeArray.map(({ id, label, value }) => {
+                  return (
+                    <button
+                      onClick={() => setJsType(value)}
+                      // setFixed
+                      key={id}
+                      className="border px-1 rounded-xl text-stone-500 text-xxs mr-1"
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </>
+            ) : null}
             {/* <div className="flex text-xxs gap-1 1 text-stone-400">
               {selected?.special?.map((item, i) => {
                 return <ButtonBox item={item} key={i} />;
@@ -275,16 +363,19 @@ const page = () => {
                 <span className="text-sm font-bold">%</span>
               </p>
               {fixed ? null : (
-                <div className="text-xxs flex justify-between">
-                  <button onClick={() => setFixed("3개월 변동")}>
-                    3개월 변동
-                  </button>
-                  <button onClick={() => setFixed("6개월 변동")}>
-                    6개월 변동
-                  </button>
-                  <button onClick={() => setFixed("1년 변동")}>1년 변동</button>
-                  <button onClick={() => setFixed("3년 고정")}>3년 고정</button>
-                  <button onClick={() => setFixed("5년 고정")}>5년 고정</button>
+                <div className="text-[7px] flex gap-1">
+                  {renderArray.map(({ id, label, value }) => {
+                    return (
+                      <button
+                        onClick={() => setFixed(value)}
+                        setFixed
+                        key={id}
+                        className="border px-1 rounded-xl text-stone-500"
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -294,7 +385,7 @@ const page = () => {
             </div>
             <div className="text-xs font-bold text-stone-500 mt-2 border-b-2 border-blue-200 pb-1 ">
               <div className="flex justify-between">
-                <p>상환방식</p>
+                <p>상환기간</p>
                 {/* <button onClick={preiodHandler} className="flex">
                   <p className="flex pr-2">
                     <input className="w-8 text-right" placeholder="40" />
@@ -316,7 +407,11 @@ const page = () => {
               <div className="flex justify-between mt-1">
                 <p>상환방법</p>
                 <p>
-                  <button onClick={repaymentHandler}>{repaymentType}</button>
+                  {selected.id >= 100 ? (
+                    <p>만기일시 상환</p>
+                  ) : (
+                    <button onClick={repaymentHandler}>{repaymentType}</button>
+                  )}
                 </p>
               </div>
               <div className="flex justify-between mt-1">
@@ -338,9 +433,19 @@ const page = () => {
             </div>
             {/* 상환금액 */}
             {repaymentType === "원리금 균등" ? (
-              <PayMoney money={money} rate={rate} preiod={preiod} />
+              <PayMoney
+                money={money}
+                rate={rate}
+                preiod={preiod}
+                JSTF={selected.id >= 100}
+              />
             ) : (
-              <PayMoney2 money={money} rate={rate} preiod={preiod} />
+              <PayMoney2
+                money={money}
+                rate={rate}
+                preiod={preiod}
+                JSTF={selected.id >= 100}
+              />
             )}
             {/* 부수거래 */}
             <div className="mt-4 p-2 rounded-md bg-stone-100">
@@ -390,6 +495,7 @@ const page = () => {
           bankArray={BankArray}
           modalHandler={modalHandler}
           setSelected={setSelected}
+          JsbankArray={JsbankArray}
         />
       ) : null}
     </>
