@@ -242,8 +242,11 @@ const page = () => {
 
   return (
     <>
-      <div className="w-screen h-screen flex justify-center font-sans">
-        <div className="flex items-center w-60 px-2 scale-150 ">
+      <div className="flex items-center justify-center h-screen overflow-hidden font-sans">
+        <div
+          className="flex items-center w-60 px-2 scale-150 py-4 border border-stone-200 shadow-xl rounded-md
+        "
+        >
           <div className="w-full">
             <div className="font-bold mb-1 flex justify-between items-baseline">
               <button onClick={modalHandler}>{selected?.bankName}</button>
@@ -321,7 +324,7 @@ const page = () => {
                   중도상환 수수료율<span className="text-xxs">(일할차감)</span>
                 </p>
                 <span>
-                  <input className="w-10 text-right" placeholder="1.2" />%
+                  <input className="w-10 text-right" placeholder="0.6" />%
                 </span>
               </div>
               <div className="flex justify-between mt-1">
