@@ -306,7 +306,7 @@ const page = () => {
     <>
       <div className="flex items-center justify-center h-screen overflow-hidden font-sans">
         <div
-          className="flex items-center w-70 px-4 scale-150 py-4 border border-stone-200 shadow-xl rounded-md
+          className="flex items-center w-72 px-4 scale-150 py-4 border border-stone-200 shadow-xl rounded-md
         "
         >
           <div className="w-full">
