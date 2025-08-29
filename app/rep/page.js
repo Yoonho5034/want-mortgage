@@ -12,13 +12,12 @@ const page = () => {
   const BankArray = [
     {
       id: 1,
-      bankName: "국민은행",
+      bankName: "경남은행",
       conditions: [
         "급여이체 월 50만",
-        "카드사용 월 30만",
-        "자동이체 3건",
-        "적금 30만(잔고유지)",
-        "스마트뱅킹",
+        "통장잔고 유지(100만)",
+        "카드사용 월 50만",
+        "자동이체 2건",
       ],
     },
     {
@@ -28,12 +27,13 @@ const page = () => {
     },
     {
       id: 3,
-      bankName: "경남은행",
+      bankName: "국민은행",
       conditions: [
         "급여이체 월 50만",
-        "통장잔고 유지(100만)",
-        "카드사용 월 50만",
-        "자동이체 2건",
+        "카드사용 월 30만",
+        "자동이체 3건",
+        "적금 30만(잔고유지)",
+        "스마트뱅킹",
       ],
     },
     {
@@ -52,17 +52,16 @@ const page = () => {
     },
     {
       id: 5,
-      bankName: "농협은행",
-      conditions: [
-        "급여이체 월 150만",
-        "카드사용 월 34만",
-        "적금 10만",
-        "통장 잔고유지 (200만)",
-        "올원뱅크 가입",
-      ],
+      bankName: "교보생명",
+      conditions: ["없음"],
     },
     {
       id: 6,
+      bankName: "단위농협",
+      conditions: ["카드 발급", "카드 사용", "화재 보험", "모바일 뱅킹 가입"],
+    },
+    {
+      id: 7,
       bankName: "대구은행",
       conditions: [
         "급여이체 월 100만",
@@ -74,7 +73,33 @@ const page = () => {
       special: ["노부모 부양", "미성년 3자녀", "모범 납세자"],
     },
     {
-      id: 7,
+      id: 8,
+      bankName: "동양생명",
+      conditions: ["없음"],
+    },
+    {
+      id: 9,
+      bankName: "농협생명",
+      conditions: ["없음"],
+    },
+    {
+      id: 10,
+      bankName: "농협손해보험",
+      conditions: ["없음"],
+    },
+    {
+      id: 11,
+      bankName: "농협은행",
+      conditions: [
+        "급여이체 월 150만",
+        "카드사용 월 34만",
+        "적금 10만",
+        "통장 잔고유지 (200만)",
+        "올원뱅크 가입",
+      ],
+    },
+    {
+      id: 12,
       bankName: "부산은행",
       conditions: [
         "급여이체 월 50만",
@@ -86,7 +111,17 @@ const page = () => {
       ],
     },
     {
-      id: 8,
+      id: 13,
+      bankName: "삼성생명",
+      conditions: ["없음"],
+    },
+    {
+      id: 14,
+      bankName: "삼성화재",
+      conditions: ["없음"],
+    },
+    {
+      id: 15,
       bankName: "신한은행",
       conditions: [
         "급여이체 월 50만",
@@ -95,13 +130,33 @@ const page = () => {
       ],
     },
     {
-      id: 9,
+      id: 16,
+      bankName: "신협",
+      conditions: ["화재보험"],
+    },
+    {
+      id: 17,
+      bankName: "수협",
+      conditions: ["없음"],
+    },
+    {
+      id: 18,
       bankName: "우리은행",
       conditions: ["급여이체 월 100만", "카드사용 월 30만", "적금 10만"],
       special: ["사회저 배려대상자"],
     },
     {
-      id: 10,
+      id: 19,
+      bankName: "제일은행",
+      conditions: ["급여이체 월 70만", "카드사용 월 30만"],
+    },
+    {
+      id: 20,
+      bankName: "하나생명",
+      conditions: ["없음"],
+    },
+    {
+      id: 21,
       bankName: "하나은행",
       conditions: [
         "급여이체 월 100만",
@@ -111,73 +166,18 @@ const page = () => {
       special: ["미성년 2자녀", "미성년 3자녀"],
     },
     {
-      id: 11,
+      id: 22,
       bankName: "한화생명",
       conditions: ["저축성 보험 월 11만"],
     },
     {
-      id: 12,
-      bankName: "교보생명",
-      conditions: ["없음"],
-    },
-    {
-      id: 13,
-      bankName: "농협손해보험",
-      conditions: ["없음"],
-    },
-    {
-      id: 14,
-      bankName: "KB손해보험",
-      conditions: ["없음"],
-    },
-    {
-      id: 15,
-      bankName: "제일은행",
-      conditions: ["급여이체 월 70만", "카드사용 월 30만"],
-    },
-    {
-      id: 16,
-      bankName: "삼성생명",
-      conditions: ["없음"],
-    },
-    {
-      id: 17,
-      bankName: "삼성화재",
-      conditions: ["없음"],
-    },
-    {
-      id: 18,
-      bankName: "동양생명",
-      conditions: ["없음"],
-    },
-    {
-      id: 19,
+      id: 23,
       bankName: "현대해상",
       conditions: ["없음"],
     },
     {
-      id: 20,
-      bankName: "하나생명",
-      conditions: ["없음"],
-    },
-    {
-      id: 21,
-      bankName: "농협생명",
-      conditions: ["없음"],
-    },
-    {
-      id: 22,
-      bankName: "신협",
-      conditions: ["화재보험"],
-    },
-    {
-      id: 23,
-      bankName: "단위농협",
-      conditions: ["카드 발급", "카드 사용", "화재 보험", "모바일 뱅킹 가입"],
-    },
-    {
       id: 24,
-      bankName: "수협",
+      bankName: "KB손해보험",
       conditions: ["없음"],
     },
   ];
