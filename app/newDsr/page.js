@@ -26,6 +26,11 @@ const page = () => {
   // 채무자 연봉 & 배우자 연봉
   const [mainIncome, setMainIncome] = react.useState(0);
   const [subIncome, setSubIncome] = react.useState(0);
+  const [income, setIncome] = react.useState(0);
+  react.useEffect(() => {
+    setIncome(Number(mainIncome) + Number(subIncome));
+  }, [mainIncome, subIncome]);
+
   // console.log(mainIncome, subIncome, "김윤호");
 
   // 담보대출 금액
@@ -75,6 +80,19 @@ const page = () => {
               </button>
             );
           })}
+        </div>
+        {/* dsr */}
+        <div className=" flex bg-stone-100 rounded-md px-6 py-4 gap-4 mt-4 font-bold text-stone-600">
+          <div className="px-2 py-1 bg-stone-200  rounded-md">
+            <p>원리금균등</p>
+            <p>Dsr 40.00%</p>
+            <p>Dti 40.00%</p>
+          </div>
+          <div className="px-2 py-1 bg-stone-200  rounded-md">
+            <p>원금균등</p>
+            <p>Dsr 40.00%</p>
+            <p>Dti 40.00%</p>
+          </div>
         </div>
         {/* 신규담보대출 */}
         <div className="mt-6 bg-stone-100 px-4 py-2 font-bold text-stone-600 rounded-lg">
