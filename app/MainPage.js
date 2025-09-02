@@ -5,7 +5,7 @@ import RefundModal from "./refund";
 import InterestOnlyModal from "./interestOnly";
 import DsrModal from "./dsrModal";
 
-export default function Home({ User }) {
+export default function Home({ User, number }) {
   const [type, setType] = react.useState("Apt");
   const [isModalOpen, setIsModalOpen] = react.useState(false);
   const [refundModalOpen, isrefundModalOpen] = react.useState(false);
@@ -209,7 +209,7 @@ export default function Home({ User }) {
               <div className="flex items-center justify-between">
                 <div className="pl-4">
                   <p className="text-sm text-gray-400 mobile:text-xs">
-                    대출상담사 등록번호 {User?.[2]}
+                    {number ? number : "대출상담사 등록번호"} {User?.[2]}
                   </p>
                   <p className="font-bold text-stone-600 ">
                     <span className="text-xl mobile:text-sm">
