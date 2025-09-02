@@ -11,7 +11,7 @@ const page = () => {
     // 상담사 등록번호
     "20-00001189",
     // 카카오톡 링크
-    "https://open.kakao.com/o/scQs8Swg",
+    "https://open.kakao.com/o/sQo5yMZg",
   ];
   return <MainPage User={User} number={"대출모집법인 등록번호"} />;
 };
