@@ -7,7 +7,7 @@ const InputBox = ({ title, subTitle, stateValue, setStateValue }) => {
   // stateValue - 입력값
   // setStateValue - 수정값
   const handler = (event) => {
-    setStateValue(event?.target?.value);
+    setStateValue(Number(event?.target?.value));
   };
   return (
     <div className="mb-3">
@@ -15,7 +15,6 @@ const InputBox = ({ title, subTitle, stateValue, setStateValue }) => {
       <input
         className="text-right mt-1"
         placeholder={stateValue}
-        type="number"
         onChange={handler}
       />
       <span className="ml-2 text-xs ">{subTitle}</span>

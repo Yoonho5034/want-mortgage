@@ -4,35 +4,53 @@ import classNames from "classnames";
 import react from "react";
 import React from "react";
 
-const MPR = ({ setMoney, setPreiod, setRate, preiod, etcRate }) => {
-  const moneyHandler = (event) => {
-    setMoney(event?.target?.value);
-  };
-  const preiodHandler = (event) => {
-    setPreiod(event?.target?.value);
-  };
-  const rateHandler = (event) => {
-    setRate(event?.target?.value);
-  };
+const MPR = ({ data, setData }) => {
   return (
     <div className="flex gap-4 mt-4 ">
       <div>
-        <input className="text-right mr-1" onChange={moneyHandler} />
+        <input
+          type="number"
+          className="text-right mr-1"
+          onChange={(e) => {
+            const value = Number(e.target.value); // 입력값을 숫자로 변환
+            setData((prev) => {
+              const newData = [...prev];
+              newData[data?.id] = { ...newData[data?.id], loan: value };
+              return newData;
+            });
+          }}
+        />
         <span className="text-xs"> 만 원</span>
       </div>
       <div>
         <input
           className="max-w-10 text-right mr-1"
-          placeholder={preiod}
-          onChange={preiodHandler}
+          type="number"
+          placeholder={data?.preiod}
+          onChange={(e) => {
+            const value = Number(e.target.value); // 입력값을 숫자로 변환
+            setData((prev) => {
+              const newData = [...prev];
+              newData[data?.id] = { ...newData[data?.id], preiod: value };
+              return newData;
+            });
+          }}
         />
         <span className="text-xs">개월</span>
       </div>
       <div>
         <input
           className="max-w-14 text-right mr-1"
-          onChange={rateHandler}
-          placeholder={etcRate}
+          type="number"
+          onChange={(e) => {
+            const value = Number(e.target.value); // 입력값을 숫자로 변환
+            setData((prev) => {
+              const newData = [...prev];
+              newData[data?.id] = { ...newData[data?.id], rate: value };
+              return newData;
+            });
+          }}
+          placeholder={data?.rate}
         />
         <span className="text-xs"> %</span>
       </div>
