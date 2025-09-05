@@ -1,10 +1,15 @@
 "use client";
 
-import classNames from "classnames";
 import react from "react";
 import React from "react";
 
-const MPR = ({ data, setData }) => {
+const MPR = ({ data, setData, etcLoans, calcLoanPI }) => {
+  // react.useEffect(() => {
+  //   etcLoans?.map(({ id, loan, preiod, rate, PI }) => {
+  //     calcLoanPI(loan, rate, preiod, id);
+  //   });
+  // }, [data]);
+
   return (
     <div className="flex gap-4 mt-4 ">
       <div>

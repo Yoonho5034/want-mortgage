@@ -247,8 +247,6 @@ const page = () => {
     // 전세대출
     const rent = (debtorRental * debtorRentalRate) / 100;
 
-    console.log(debtorLoan, debtorLoanRate, "김윤호2");
-    console.log(type1, credit, loan, rent, debtorIncome, "김윤호");
     return (type1 + credit + loan + rent) / debtorIncome;
   };
 

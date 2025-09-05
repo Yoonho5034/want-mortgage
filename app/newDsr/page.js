@@ -47,7 +47,7 @@ const page = () => {
 
   const calcLoanPI = (money, rate, preiod, id) => {
     // guard: 0이나 음수 방지
-    if (!money || !rate || !preiod) return 0;
+    if (!rate || !preiod) return 0;
 
     const numerator =
       ((money * 10000 * rate) / 1200) * (1 + rate / 1200) ** preiod;
@@ -103,16 +103,35 @@ const page = () => {
     (Number(bondPriod) / 12) /
     10000;
 
-  // 원리금
-  const TYPE_1 = (((type1 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(
-    2
-  );
+  // 원리금 균등
+  const TYPE_1 =
+    bond && mainIncome
+      ? (((type1 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(2)
+      : 0;
   // 원금균등
-  const TYPE_2 = (((type2 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(
-    2
-  );
+  const TYPE_2 =
+    bond && mainIncome
+      ? (((type2 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(2)
+      : 0;
 
-  console.log(TYPE_1, TYPE_2);
+  const dti = etcLoans.reduce((sum, loan) => {
+    return sum + loan.loan * (loan.rate / 100);
+  }, 0);
+
+  // DTI(원리금)
+  const dti_type_1 =
+    bond && mainIncome
+      ? (((type1 + dti) / (mainIncome + subIncome)) * 100).toFixed(2)
+      : 0;
+  const dti_type_2 =
+    bond && mainIncome
+      ? (((type2 + dti) / (mainIncome + subIncome)) * 100).toFixed(2)
+      : 0;
+
+  react.useEffect(() => {
+    calcEvent();
+  }, [dti_type_1, dti_type_2]);
+
   return (
     <div className="flex justify-center font-sans">
       {/* 내부 area */}
@@ -121,29 +140,39 @@ const page = () => {
         <div className="flex gap-3">
           {hrefArray.map(({ name, link }) => {
             return (
-              <button className="bg-stone-200 px-2 py-1 rounded-lg">
-                <a
-                  href={link}
-                  className="text-stone-600 font-bold text-sm"
-                  target="_blank"
-                >
+              <a
+                href={link}
+                className="text-stone-600 font-bold text-sm"
+                target="_blank"
+              >
+                <button className="bg-stone-200 px-2 py-1 rounded-lg">
                   {name}
-                </a>
-              </button>
+                </button>
+              </a>
             );
           })}
         </div>
         {/* dsr */}
         <div className=" flex bg-stone-100 rounded-md px-6 py-4 gap-4 mt-4 font-bold text-stone-600">
           <div className="px-2 py-1 bg-stone-200  rounded-md">
-            <p className="text-center">원금균등</p>
-            <p>Dsr {TYPE_2}%</p>
-            <p>Dti 40.00%</p>
+            <p className="text-center">원금 균등</p>
+            <p>
+              Dsr <span className="text-xl text-orange-400">{TYPE_2}</span>
+              <span className="text-xs"> %</span>
+            </p>
+            Dti <span className="text-xl text-orange-400">{dti_type_2}</span>
+            <span className="text-xs"> %</span>
           </div>
           <div className="px-2 py-1 bg-stone-200  rounded-md">
-            <p className="text-center">원리금균등</p>
-            <p>Dsr {TYPE_1} %</p>
-            <p>Dti 40.00%</p>
+            <p className="text-center">원리금 균등</p>
+            <p>
+              Dsr <span className="text-xl text-orange-400">{TYPE_1}</span>
+              <span className="text-xs "> %</span>
+            </p>
+            <p>
+              Dti <span className="text-xl text-orange-400">{dti_type_1}</span>
+              <span className="text-xs"> %</span>
+            </p>
           </div>
         </div>
         {/* 신규담보대출 */}
@@ -220,7 +249,12 @@ const page = () => {
           </div>
           {/* 기타부채 */}
           <div>
-            <MPR data={etcLoans?.[0]} setData={setEtcLoans} />
+            <MPR
+              data={etcLoans?.[0]}
+              setData={setEtcLoans}
+              etcLoans={etcLoans}
+              calcLoanPI={calcLoanPI}
+            />
             <MPR data={etcLoans?.[1]} setData={setEtcLoans} />
             <MPR data={etcLoans?.[2]} setData={setEtcLoans} />
             <MPR data={etcLoans?.[3]} setData={setEtcLoans} />
@@ -228,14 +262,14 @@ const page = () => {
           </div>
         </div>
         {/* 계산기 */}
-        <div className="flex justify-center mt-4 font-bold text-stone-700">
+        {/* <div className="flex justify-center mt-4 font-bold text-stone-700">
           <button
             className="w-60 h-14 bg-stone-400 rounded-lg"
             onClick={calcEvent}
           >
             계산하기
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
