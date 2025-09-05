@@ -5,6 +5,7 @@ import react from "react";
 import React from "react";
 import InputBox from "../InputBox";
 import MPR from "../MPR";
+import Modal from "./calc";
 
 const page = () => {
   // 링크
@@ -135,6 +136,13 @@ const page = () => {
       ? (((type2 + dti + jsI) / (mainIncome + subIncome)) * 100).toFixed(2)
       : 0;
 
+  const [isModalOpen, setIsModalOpen] = react.useState(false);
+  const modalHandler = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
+  console.log(isModalOpen);
+
   react.useEffect(() => {
     calcEvent();
   }, [dti_type_1, dti_type_2]);
@@ -249,6 +257,11 @@ const page = () => {
               setStateValue={setSubIncome}
             />
           </div>
+          <button onClick={modalHandler}>
+            <div className="px-2 py-1 bg-stone-300 rounded-lg text-xs text-stone-500">
+              추정소득 환산
+            </div>
+          </button>
         </div>
         <div className="mt-6 bg-stone-100 px-4 p-2 font-bold text-stone-600 rounded-lg">
           <div>기존 대출</div>
@@ -270,16 +283,8 @@ const page = () => {
             <MPR data={js?.[0]} setData={setJs} />
           </div>
         </div>
-        {/* 계산기 */}
-        {/* <div className="flex justify-center mt-4 font-bold text-stone-700">
-          <button
-            className="w-60 h-14 bg-stone-400 rounded-lg"
-            onClick={calcEvent}
-          >
-            계산하기
-          </button>
-        </div> */}
       </div>
+      {isModalOpen ? <Modal modalHandler={modalHandler} /> : null}
     </div>
   );
 };
