@@ -144,6 +144,7 @@ const page = () => {
                 href={link}
                 className="text-stone-600 font-bold text-sm"
                 target="_blank"
+                key={name}
               >
                 <button className="bg-stone-200 px-2 py-1 rounded-lg">
                   {name}
@@ -216,6 +217,7 @@ const page = () => {
                         : "mr-2 text-md px-2 py-1 mt-2 bg-stone-200 rounded-lg text-stone-400"
                     }
                     onClick={onClick}
+                    key={value}
                   >
                     {title}
                   </button>
