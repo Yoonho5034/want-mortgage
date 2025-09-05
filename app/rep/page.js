@@ -9,9 +9,9 @@ import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const sp = useSearchParams();
-  const test = Number(sp.get("bond"));
+
   const BankArray = [
     {
       id: 1,
@@ -501,4 +501,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
