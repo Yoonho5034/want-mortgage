@@ -10,7 +10,7 @@ import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
-const Page = () => {
+const page = () => {
   const sp = useSearchParams();
 
   const BankArray = [
@@ -502,4 +502,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
