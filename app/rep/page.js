@@ -7,8 +7,11 @@ import MoneyInput from "../MoneyInput";
 import PayMoney from "./payMoney";
 import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
+import { useSearchParams } from "next/navigation";
 
 const page = () => {
+  const sp = useSearchParams();
+  const test = Number(sp.get("bond"));
   const BankArray = [
     {
       id: 1,
@@ -238,9 +241,9 @@ const page = () => {
 
   const [fixed, setFixed] = react.useState(null);
 
-  const [money, setMoney] = react.useState(null);
-  const [rate, setRate] = react.useState(null);
-  const [preiod, setPreiod] = react.useState(30);
+  const [money, setMoney] = react.useState(Number(sp.get("bond")));
+  const [rate, setRate] = react.useState(Number(sp.get("bondRate")));
+  const [preiod, setPreiod] = react.useState(Number(sp.get("bondPriod")) / 12);
 
   const [free, setFree] = react.useState("3년 간");
   const freeHandler = () => {
@@ -357,6 +360,7 @@ const page = () => {
                 </span>
                 <input
                   placeholder="4.00"
+                  value={rate ? rate : null}
                   className="w-11 text-right mr-1"
                   onChange={(e) => setRate(e.target.value)}
                 />
@@ -381,22 +385,17 @@ const page = () => {
             </div>
             <div className="mt-3 border-b-2 border-blue-200 pb-1">
               <p className="text-xxs text-stone-500">내 대출한도</p>
-              <MoneyInput setMoney={setMoney} />
+              <MoneyInput setMoney={setMoney} money={money} />
             </div>
             <div className="text-xs font-bold text-stone-500 mt-2 border-b-2 border-blue-200 pb-1 ">
               <div className="flex justify-between">
                 <p>상환기간</p>
-                {/* <button onClick={preiodHandler} className="flex">
-                  <p className="flex pr-2">
-                    <input className="w-8 text-right" placeholder="40" />
-                    <span>년 만기</span>
-                  </p>
-                </button> */}
                 <div className="flex">
                   <div className="flex ">
                     <input
                       className="w-8 text-right"
                       placeholder="30"
+                      value={preiod ? preiod : null}
                       onChange={(e) => setPreiod(e.target.value)}
                     />
                     <span>년 만기</span>

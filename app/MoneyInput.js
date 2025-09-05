@@ -1,12 +1,12 @@
 import react from "react";
 import React, { useState } from "react";
 
-const MoneyInput = ({ setMoney }) => {
+const MoneyInput = ({ setMoney, money }) => {
   const [isOpen, setIsOpen] = react.useState(false);
   const openHandler = () => {
     setIsOpen((prev) => !prev);
   };
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(money);
   const [convertedValue, setConvertedValue] = useState("");
 
   // 숫자/단위를 분리해서 각각 스타일링하기 위한 헬퍼
@@ -47,7 +47,7 @@ const MoneyInput = ({ setMoney }) => {
   };
 
   const handleChange = (e) => {
-    const value = e.target.value.replace(/,/g, "");
+    const value = (e?.target?.value ?? money)?.toString().replace(/,/g, "");
     setMoney(value);
     const number = parseInt(value, 10);
 
@@ -60,6 +60,21 @@ const MoneyInput = ({ setMoney }) => {
       setConvertedValue("");
     }
   };
+  const inputRef = React.useRef(null);
+  const didRun = React.useRef(false);
+  react.useEffect(() => {
+    handleChange();
+    if (didRun.current) return;
+    didRun.current = true;
+
+    // 렌더 후 다음 프레임에 포커스 → 그 다음 프레임에 블러
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+      requestAnimationFrame(() => {
+        inputRef.current?.blur(); // onBlur 핸들러도 호출됨
+      });
+    });
+  }, []);
 
   return (
     <div className="font-bold text-xl text-blue-500 ">
@@ -70,6 +85,7 @@ const MoneyInput = ({ setMoney }) => {
           value={inputValue}
           onChange={handleChange}
           onBlur={openHandler}
+          ref={inputRef}
         />
       ) : (
         <button

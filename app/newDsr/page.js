@@ -6,6 +6,7 @@ import React from "react";
 import InputBox from "../InputBox";
 import MPR from "../MPR";
 import Modal from "./calc";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   // 링크
@@ -152,9 +153,27 @@ const page = () => {
         {/* 링크 */}
         <div className="flex gap-3">
           {hrefArray.map(({ name, link }) => {
+            const router = useRouter();
+            // const { bond, bondRate, bondPriod } = router.query;
+            const handleMove = () => {
+              const payload = { bond, bondRate, bondPriod };
+              sessionStorage.setItem("dsrParams", JSON.stringify(payload));
+
+              if (name === "제안서") {
+                const params = new URLSearchParams({
+                  bond: String(bond),
+                  bondRate: String(bondRate),
+                  bondPriod: String(bondPriod),
+                });
+                router.push(`/rep?${params.toString()}`);
+                return;
+              }
+
+              router.push(link);
+            };
             return (
               <a
-                href={link}
+                onClick={handleMove}
                 className="text-stone-600 font-bold text-sm"
                 target="_blank"
                 key={name}

@@ -1,5 +1,6 @@
 // 원리금균등
 
+import react from "react";
 import React, { useState } from "react";
 
 const LoanCalculator = ({ money, rate, preiod, JSTF }) => {
@@ -43,6 +44,10 @@ const LoanCalculator = ({ money, rate, preiod, JSTF }) => {
       setFirstMonthInterest("Invalid input");
     }
   };
+
+  react.useEffect(() => {
+    handleCalculate();
+  }, [money, rate, preiod, JSTF]);
 
   return (
     <div className="flex font-bold text-stone-500 justify-between mt-2">

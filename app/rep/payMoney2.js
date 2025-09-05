@@ -1,5 +1,5 @@
 // 원금균등
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const PrincipalEqualPaymentCalculator = ({ rate, money, preiod }) => {
   const [monthlyPrincipalPayment, setMonthlyPrincipalPayment] = useState("");
@@ -32,6 +32,9 @@ const PrincipalEqualPaymentCalculator = ({ rate, money, preiod }) => {
       setFirstMonthTotalPayment("Invalid input");
     }
   };
+  useEffect(() => {
+    handleCalculate();
+  }, [money, rate, preiod]);
 
   return (
     // <div>
