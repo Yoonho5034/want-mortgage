@@ -1,4 +1,5 @@
 // 원금균등
+
 import React, { useState, useEffect } from "react";
 
 const PrincipalEqualPaymentCalculator = ({ rate, money, preiod }) => {
