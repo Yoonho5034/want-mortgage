@@ -141,8 +141,6 @@ const page = () => {
     setIsModalOpen((prev) => !prev);
   };
 
-  console.log(isModalOpen);
-
   react.useEffect(() => {
     calcEvent();
   }, [dti_type_1, dti_type_2]);

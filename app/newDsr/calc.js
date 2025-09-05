@@ -2,7 +2,6 @@
 
 import react from "react";
 import React from "react";
-// {title:"",content:[""]}
 const modal = ({ modalHandler }) => {
   const typeArray = [
     { title: "카드사용", id: 0, type: "card" },
@@ -48,7 +47,7 @@ const modal = ({ modalHandler }) => {
                     환산금액
                     <span className="text-lg text-orange-500 ml-2">
                       {money}
-                    </span>{" "}
+                    </span>
                     만원
                   </div>
                 </div>
@@ -61,19 +60,6 @@ const modal = ({ modalHandler }) => {
               X
             </button>
           </div>
-        </div>
-        {/* content */}
-        <div>
-          {/* {Notice?.map(({ title, content }, i) => {
-            return (
-              <div className="text-sm mb-2" key={i}>
-                <p className="font-bold">{title}</p>
-                {content?.map((item, i) => {
-                  return <p key={i}>{item}</p>;
-                })}
-              </div>
-            );
-          })} */}
         </div>
       </div>
     </div>
