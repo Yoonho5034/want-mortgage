@@ -37,6 +37,13 @@ const page = () => {
   // 담보대출 상환기간
   const [bondPriod, setBondPriod] = react.useState(360);
 
+  // 전세대출
+  const [js, setJs] = react.useState([
+    { id: 0, loan: 0, preiod: 24, rate: 5.39, PI: 0 },
+  ]);
+  // 전세대출 이자상환액
+  const jsI = (js?.[0].loan * js?.[0].rate) / 100;
+
   const [etcLoans, setEtcLoans] = react.useState([
     { id: 0, loan: 0, preiod: 60, rate: 5.39, PI: 0 },
     { id: 1, loan: 0, preiod: 60, rate: 5.39, PI: 0 },
@@ -106,12 +113,12 @@ const page = () => {
   // 원리금 균등
   const TYPE_1 =
     bond && mainIncome
-      ? (((type1 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(2)
+      ? (((type1 + totalPI + jsI) / (mainIncome + subIncome)) * 100).toFixed(2)
       : 0;
   // 원금균등
   const TYPE_2 =
     bond && mainIncome
-      ? (((type2 + totalPI) / (mainIncome + subIncome)) * 100).toFixed(2)
+      ? (((type2 + totalPI + jsI) / (mainIncome + subIncome)) * 100).toFixed(2)
       : 0;
 
   const dti = etcLoans.reduce((sum, loan) => {
@@ -121,11 +128,11 @@ const page = () => {
   // DTI(원리금)
   const dti_type_1 =
     bond && mainIncome
-      ? (((type1 + dti) / (mainIncome + subIncome)) * 100).toFixed(2)
+      ? (((type1 + dti + jsI) / (mainIncome + subIncome)) * 100).toFixed(2)
       : 0;
   const dti_type_2 =
     bond && mainIncome
-      ? (((type2 + dti) / (mainIncome + subIncome)) * 100).toFixed(2)
+      ? (((type2 + dti + jsI) / (mainIncome + subIncome)) * 100).toFixed(2)
       : 0;
 
   react.useEffect(() => {
@@ -243,12 +250,8 @@ const page = () => {
             />
           </div>
         </div>
-        <div className="mt-6 bg-stone-100 px-4 py-2 font-bold text-stone-600 rounded-lg">
-          <div className="flex gap-6">
-            <div className="mr-32">기존 대출금액</div>
-            <div className="mr-8">대출만기</div>
-            <div>금리</div>
-          </div>
+        <div className="mt-6 bg-stone-100 px-4 p-2 font-bold text-stone-600 rounded-lg">
+          <div>기존 대출</div>
           {/* 기타부채 */}
           <div>
             <MPR
@@ -261,6 +264,10 @@ const page = () => {
             <MPR data={etcLoans?.[2]} setData={setEtcLoans} />
             <MPR data={etcLoans?.[3]} setData={setEtcLoans} />
             <MPR data={etcLoans?.[4]} setData={setEtcLoans} />
+          </div>
+          <div className="mt-4">
+            <p>전세 대출</p>
+            <MPR data={js?.[0]} setData={setJs} />
           </div>
         </div>
         {/* 계산기 */}
