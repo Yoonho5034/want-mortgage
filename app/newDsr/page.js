@@ -146,9 +146,9 @@ const page = () => {
   }, [dti_type_1, dti_type_2]);
 
   return (
-    <div className="flex justify-center font-sans">
+    <div className="flex justify-center font-sans mobile:mb-10">
       {/* 내부 area */}
-      <div className="w-3/4 mt-4 ">
+      <div className="w-3/4 mt-4 mobile:w-4/5">
         {/* 링크 */}
         <div className="flex gap-3">
           {hrefArray.map(({ name, link }) => {
@@ -168,7 +168,7 @@ const page = () => {
         </div>
         {/* dsr */}
         <div className=" flex bg-stone-100 rounded-md px-6 py-4 gap-4 mt-4 font-bold text-stone-600">
-          <div className="px-2 py-1 bg-stone-200  rounded-md">
+          <div className="px-2 py-1 bg-stone-200  rounded-md mobile:w-1/2">
             <p className="text-center">원금 균등</p>
             <p>
               Dsr <span className="text-xl text-orange-400">{TYPE_2}</span>
@@ -177,7 +177,7 @@ const page = () => {
             Dti <span className="text-xl text-orange-400">{dti_type_2}</span>
             <span className="text-xs"> %</span>
           </div>
-          <div className="px-2 py-1 bg-stone-200  rounded-md">
+          <div className="px-2 py-1 bg-stone-200  rounded-md mobile:w-1/2">
             <p className="text-center">원리금 균등</p>
             <p>
               Dsr <span className="text-xl text-orange-400">{TYPE_1}</span>

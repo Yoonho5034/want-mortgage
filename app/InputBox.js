@@ -13,7 +13,7 @@ const InputBox = ({ title, subTitle, stateValue, setStateValue }) => {
     <div className="mb-3">
       <div>{title}</div>
       <input
-        className="text-right mt-1"
+        className="text-right mt-1  mobile:w-24"
         placeholder={stateValue}
         onChange={handler}
       />

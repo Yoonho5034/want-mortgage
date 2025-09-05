@@ -15,7 +15,7 @@ const MPR = ({ data, setData, etcLoans, calcLoanPI }) => {
       <div>
         <input
           type="number"
-          className="text-right mr-1"
+          className="text-right mr-1 mobile:w-16"
           onChange={(e) => {
             const value = Number(e.target.value); // 입력값을 숫자로 변환
             setData((prev) => {
@@ -29,7 +29,7 @@ const MPR = ({ data, setData, etcLoans, calcLoanPI }) => {
       </div>
       <div>
         <input
-          className="max-w-10 text-right mr-1"
+          className="max-w-12 text-right mr-1 mobile:w-10"
           type="number"
           placeholder={data?.preiod}
           onChange={(e) => {
@@ -45,7 +45,7 @@ const MPR = ({ data, setData, etcLoans, calcLoanPI }) => {
       </div>
       <div>
         <input
-          className="max-w-14 text-right mr-1"
+          className="max-w-14 text-right mr-1 mobile:w-14"
           type="number"
           onChange={(e) => {
             const value = Number(e.target.value); // 입력값을 숫자로 변환
