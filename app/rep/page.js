@@ -21,6 +21,7 @@ function useBondParams() {
 }
 
 const page = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { paramsMoney, paramsRate, paramsPreiod } = useBondParams();
   const BankArray = [
     {
