@@ -1,3 +1,4 @@
+
 "use client";
 
 import react from "react";
@@ -233,7 +234,7 @@ const page = () => {
       conditions: ["건별 확인 필요"],
     },
     {
-      id: 105,
+      id: 106,
       bankName: "새마을 금고",
       conditions: ["건별 확인 필요"],
     },
