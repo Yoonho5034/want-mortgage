@@ -10,8 +10,8 @@ import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
-const Page = () => {
-  const sp = useSearchParams();
+const page = () => {
+  // const sp = useSearchParams();
 
   const BankArray = [
     {
@@ -241,7 +241,7 @@ const Page = () => {
   };
 
   const [fixed, setFixed] = react.useState(null);
-
+  const sp = useSearchParams();
   const [money, setMoney] = react.useState(Number(sp.get("bond")));
   const [rate, setRate] = react.useState(Number(sp.get("bondRate")));
   const [preiod, setPreiod] = react.useState(Number(sp.get("bondPriod")) / 12);
@@ -348,11 +348,6 @@ const Page = () => {
                 })}
               </>
             ) : null}
-            {/* <div className="flex text-xxs gap-1 1 text-stone-400">
-              {selected?.special?.map((item, i) => {
-                return <ButtonBox item={item} key={i} />;
-              })}
-            </div> */}
             <div className="mt-3">
               <p className="text-xxs text-stone-500">내 금리</p>
               <p className="font-bold text-xl text-blue-500 flex items-baseline justify-end">
@@ -502,4 +497,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
