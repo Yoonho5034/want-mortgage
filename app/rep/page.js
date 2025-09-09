@@ -10,8 +10,22 @@ import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
+function useBondParams() {
+  const sp = useSearchParams();
+
+  return {
+    paramsMoney: Number(sp.get("bond")),
+    paramsRate: Number(sp.get("bondRate")),
+    paramsPreiod: Number(sp.get("bondPriod")) / 12,
+  };
+}
+
 const page = () => {
   // const sp = useSearchParams();
+  const { paramsMoney, paramsRate, paramsPreiod } = useBondParams();
+
+  console.log(useBondParams());
+  // console.log(paramsMoney, paramsRate, paramsPreiod, "김윤호 ");
 
   const BankArray = [
     {
@@ -163,9 +177,9 @@ const page = () => {
       id: 21,
       bankName: "하나은행",
       conditions: [
-        "급여이체 월 100만",
-        "카드사용 월 30만",
-        "적금 월 10만 or 청약 월 5만",
+        "급여이체 월 50만",
+        "카드사용 월 70만",
+        "적금 월 10만 or 청약 월 10만",
       ],
       special: ["미성년 2자녀", "미성년 3자녀"],
     },
@@ -242,9 +256,9 @@ const page = () => {
 
   const [fixed, setFixed] = react.useState(null);
   const sp = useSearchParams();
-  const [money, setMoney] = react.useState(Number(sp.get("bond")));
-  const [rate, setRate] = react.useState(Number(sp.get("bondRate")));
-  const [preiod, setPreiod] = react.useState(Number(sp.get("bondPriod")) / 12);
+  const [money, setMoney] = react.useState(paramsMoney);
+  const [rate, setRate] = react.useState(paramsRate);
+  const [preiod, setPreiod] = react.useState(paramsPreiod);
 
   const [free, setFree] = react.useState("3년 간");
   const freeHandler = () => {
