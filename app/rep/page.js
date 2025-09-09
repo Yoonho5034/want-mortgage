@@ -1,4 +1,3 @@
-
 "use client";
 
 import react from "react";
@@ -22,12 +21,7 @@ function useBondParams() {
 }
 
 const page = () => {
-  // const sp = useSearchParams();
   const { paramsMoney, paramsRate, paramsPreiod } = useBondParams();
-
-  console.log(useBondParams());
-  // console.log(paramsMoney, paramsRate, paramsPreiod, "김윤호 ");
-
   const BankArray = [
     {
       id: 1,
@@ -256,7 +250,7 @@ const page = () => {
   };
 
   const [fixed, setFixed] = react.useState(null);
-  const sp = useSearchParams();
+  // const sp = useSearchParams();
   const [money, setMoney] = react.useState(paramsMoney);
   const [rate, setRate] = react.useState(paramsRate);
   const [preiod, setPreiod] = react.useState(paramsPreiod);
