@@ -10,17 +10,16 @@ import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
-function useBondParams() {
-  const sp = useSearchParams();
-
-  return {
-    paramsMoney: Number(sp.get("bond")),
-    paramsRate: Number(sp.get("bondRate")),
-    paramsPreiod: Number(sp.get("bondPriod")) / 12,
-  };
-}
-
 const Newpage = () => {
+  const useBondParams = () => {
+    const sp = useSearchParams();
+
+    return {
+      paramsMoney: Number(sp.get("bond")),
+      paramsRate: Number(sp.get("bondRate")),
+      paramsPreiod: Number(sp.get("bondPriod")) / 12,
+    };
+  };
   const { paramsMoney, paramsRate, paramsPreiod } = useBondParams();
   const BankArray = [
     {
