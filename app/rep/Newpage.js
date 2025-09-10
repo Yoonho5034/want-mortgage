@@ -3,7 +3,6 @@
 import react from "react";
 import BankModal from "./bankModal";
 import Option from "./Option";
-import ButtonBox from "./ButtonBox";
 import MoneyInput from "../MoneyInput";
 import PayMoney from "./payMoney";
 import PayMoney2 from "./payMoney2";
