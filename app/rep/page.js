@@ -8,7 +8,7 @@ import PayMoney from "./payMoney";
 import PayMoney2 from "./payMoney2";
 import Cookies from "js-cookie";
 
-const Newpage = () => {
+const page = () => {
   const BankArray = [
     {
       id: 1,
@@ -493,4 +493,4 @@ const Newpage = () => {
   );
 };
 
-export default Newpage;
+export default page;
