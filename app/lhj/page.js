@@ -10,7 +10,7 @@ const page = () => {
     // 상담사 등록번호
     "10-00043371",
     // 카카오톡 링크
-    "https://open.kakao.com/o/sbQ6788g",
+    "https://open.kakao.com/o/sie0przh",
   ];
   return <MainPage User={User} />;
 };
