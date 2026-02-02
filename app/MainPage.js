@@ -34,7 +34,7 @@ export default function Home({ User, number }) {
   const Rate = [
     { value: "Apt", rate: "연 4.74% ~ 5.64%" },
     { value: "Villa", rate: "연 5.24% ~ 6.14" },
-    "( 2025년 2월 기준 )",
+    "( 2026년 2월 기준 )",
   ];
   const handleCall = () => {
     window.location.href = `tel:${User?.[1]}`; // 전화번호를 여기에 입력하세요
