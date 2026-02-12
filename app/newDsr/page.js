@@ -21,6 +21,8 @@ const page = () => {
     { title: "0.6%", value: 0.6 },
     { title: "1.2%", value: 1.2 },
     { title: "1.5%", value: 1.5 },
+    { title: "2.4%", value: 2.4 },
+    { title: "3.0%", value: 3.0 },
   ];
   const [streesDsr, setStreesDsr] = react.useState(0.6);
 
